@@ -19,8 +19,6 @@ namespace COSC3506_Project
 
         private void systemAdminForm_Load(object sender, EventArgs e)
         {
-            // TODO: Populate the user list.
-
             usersListView.View = View.Details;
             usersListView.GridLines = true;
             usersListView.FullRowSelect = true;
@@ -29,6 +27,8 @@ namespace COSC3506_Project
             usersListView.Columns.Add("First Name", 100);
             usersListView.Columns.Add("Type", 100);
             usersListView.Columns.Add("E-mail", 200);
+
+            // Populate the user list.
         }
     }
 }

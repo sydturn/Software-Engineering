@@ -54,7 +54,7 @@
     <Compile Include="applicantForm.Designer.cs">
       <DependentUpon>applicantForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Connection.cs" />
+    <Compile Include="DBConnection.cs" />
     <Compile Include="signInForm.cs">
       <SubType>Form</SubType>
     </Compile>
