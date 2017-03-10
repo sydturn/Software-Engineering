@@ -12,18 +12,14 @@ namespace COSC3506_Project
 {
     public partial class applicantForm : Form
     {
-        private bool hasResume;
-
         public applicantForm()
         {
-            // TODO: Check if a resume exists for the applicant. Update hasResume
             InitializeComponent();
         }
 
         private void applicantForm_Load(object sender, EventArgs e)
         {
             // TODO: Update welcome message with the applicants name.
-            // TODO: Update buttons/label if the user has a resume on file.
 
             // TODO: Load applications on file and populate the list.
             // TODO: Load open job postings and populate the list.
