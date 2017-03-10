@@ -17,7 +17,7 @@ namespace COSC3506_Project
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // TODO: Create a new Connection and test before showing mainForm.
-            Application.Run(new systemAdminForm());
+            Application.Run(new SystemAdminForm());
         }
     }
 }

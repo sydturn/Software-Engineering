@@ -48,32 +48,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="applicantForm.cs">
+    <Compile Include="ApplicantForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="applicantForm.Designer.cs">
-      <DependentUpon>applicantForm.cs</DependentUpon>
+    <Compile Include="ApplicantForm.Designer.cs">
+      <DependentUpon>ApplicantForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DBConnection.cs" />
-    <Compile Include="signInForm.cs">
+    <Compile Include="SignInForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="signInForm.Designer.cs">
-      <DependentUpon>signInForm.cs</DependentUpon>
+    <Compile Include="SignInForm.Designer.cs">
+      <DependentUpon>SignInForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="systemAdminForm.cs">
+    <Compile Include="SystemAdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="systemAdminForm.Designer.cs">
-      <DependentUpon>systemAdminForm.cs</DependentUpon>
+    <Compile Include="SystemAdminForm.Designer.cs">
+      <DependentUpon>SystemAdminForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="applicantForm.resx">
-      <DependentUpon>applicantForm.cs</DependentUpon>
+    <EmbeddedResource Include="ApplicantForm.resx">
+      <DependentUpon>ApplicantForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="signInForm.resx">
-      <DependentUpon>signInForm.cs</DependentUpon>
+    <EmbeddedResource Include="SignInForm.resx">
+      <DependentUpon>SignInForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -84,8 +84,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="systemAdminForm.resx">
-      <DependentUpon>systemAdminForm.cs</DependentUpon>
+    <EmbeddedResource Include="SystemAdminForm.resx">
+      <DependentUpon>SystemAdminForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace COSC3506_Project
 {
-    public partial class systemAdminForm : Form
+    public partial class SystemAdminForm : Form
     {
-        public systemAdminForm()
+        public SystemAdminForm()
         {
             InitializeComponent();
         }

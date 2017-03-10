@@ -1,6 +1,6 @@
 ﻿namespace COSC3506_Project
 {
-    partial class applicantForm
+    partial class ApplicantForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(applicantForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ApplicantForm));
             this.lblApplicantWelcome = new System.Windows.Forms.Label();
             this.lblCurrentApplications = new System.Windows.Forms.Label();
             this.applicationsListBox = new System.Windows.Forms.ListBox();

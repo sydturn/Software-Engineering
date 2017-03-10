@@ -1,6 +1,6 @@
 ﻿namespace COSC3506_Project
 {
-    partial class systemAdminForm
+    partial class SystemAdminForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(systemAdminForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SystemAdminForm));
             this.lblUserList = new System.Windows.Forms.Label();
             this.btnModifyUser = new System.Windows.Forms.Button();
             this.btnDeleteUser = new System.Windows.Forms.Button();
