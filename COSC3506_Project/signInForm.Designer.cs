@@ -44,10 +44,10 @@
             // 
             this.lblEARSSignOnHeader.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblEARSSignOnHeader.AutoSize = true;
-            this.lblEARSSignOnHeader.Font = new System.Drawing.Font("Segoe UI Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEARSSignOnHeader.Font = new System.Drawing.Font("Segoe UI Semilight", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEARSSignOnHeader.Location = new System.Drawing.Point(26, 26);
             this.lblEARSSignOnHeader.Name = "lblEARSSignOnHeader";
-            this.lblEARSSignOnHeader.Size = new System.Drawing.Size(375, 32);
+            this.lblEARSSignOnHeader.Size = new System.Drawing.Size(386, 32);
             this.lblEARSSignOnHeader.TabIndex = 0;
             this.lblEARSSignOnHeader.Text = "Please sign into your account below";
             // 
@@ -139,7 +139,7 @@
             this.lblApplicantRegister.TabIndex = 8;
             this.lblApplicantRegister.Text = "If you are an applicant and\r\nneed to register, click here:";
             // 
-            // mainForm
+            // signInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -156,7 +156,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "mainForm";
+            this.Name = "signInForm";
             this.Text = "EARS - International School of Software";
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.ResumeLayout(false);

@@ -29,6 +29,8 @@ namespace COSC3506_Project
                 if (txtPassword.TextLength > 0)
                 {
                     // TODO: User authentication.
+                    // TODO: Create new User object, initialize object with database data.
+                    // TODO: Check user type, display appropriate form.
                 }
                 else
                     MessageBox.Show(this, "Please enter a valid password.", "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Error);

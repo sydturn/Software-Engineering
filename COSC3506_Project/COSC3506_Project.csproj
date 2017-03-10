@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="applicantForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="applicantForm.Designer.cs">
+      <DependentUpon>applicantForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Connection.cs" />
     <Compile Include="signInForm.cs">
       <SubType>Form</SubType>
@@ -57,6 +63,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="applicantForm.resx">
+      <DependentUpon>applicantForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="signInForm.resx">
       <DependentUpon>signInForm.cs</DependentUpon>
     </EmbeddedResource>
