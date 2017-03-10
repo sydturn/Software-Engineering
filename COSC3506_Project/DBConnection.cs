@@ -14,14 +14,26 @@ namespace COSC3506_Project
         private MySqlConnection connection;
         private string server, database, password, username;
 
-        public DBConnection (string server, string database, string password, string username)
+        /// <summary>
+        /// Constructor - create a new database connection instance.
+        /// </summary>
+        /// <param name="server">The database server address</param>
+        /// <param name="database">Database name</param>
+        /// <param name="username">Database username</param>
+        /// <param name="password">Database password</param>
+        public DBConnection (string server, string database, string username, string password)
         {
             this.server = server;
             this.database = database;
             this.username = username;
             this.password = password;
+
+            Initialize();
         }
 
+        /// <summary>
+        /// Build the connection string and initialize the connection object.
+        /// </summary>
         private void Initialize()
         {
             string connectionString = "SERVER=" + server + ";" + "DATABASE=" + database + ";" +
@@ -30,6 +42,10 @@ namespace COSC3506_Project
             connection = new MySqlConnection(connectionString);
         }
 
+        /// <summary>
+        /// Open the connection and return the status.
+        /// </summary>
+        /// <returns>True/false</returns>
         public bool OpenConnection()
         {
             try
@@ -48,6 +64,24 @@ namespace COSC3506_Project
                         Console.WriteLine("Invalid database credentials.");
                         break;
                 }
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Close the connection and return the status.
+        /// </summary>
+        /// <returns>True/false</returns>
+        public bool CloseConnection()
+        {
+            try
+            {
+                connection.Close();
+                return true;
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
