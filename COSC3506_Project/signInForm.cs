@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace COSC3506_Project
 {
-    public partial class mainForm : Form
+    public partial class signInForm : Form
     {
-        public mainForm()
+        public signInForm()
         {
             InitializeComponent();
         }
