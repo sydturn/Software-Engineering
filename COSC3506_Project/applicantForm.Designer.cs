@@ -175,7 +175,7 @@
             this.btnSignOut.Name = "btnSignOut";
             this.btnSignOut.Size = new System.Drawing.Size(75, 23);
             this.btnSignOut.TabIndex = 12;
-            this.btnSignOut.Text = "Sign Out";
+            this.btnSignOut.Text = "Logout";
             this.btnSignOut.UseVisualStyleBackColor = true;
             // 
             // btnUpdateContactInfo

@@ -24,6 +24,9 @@ namespace COSC3506_Project
         {
             // TODO: Update welcome message with the applicants name.
             // TODO: Update buttons/label if the user has a resume on file.
+
+            // TODO: Load applications on file and populate the list.
+            // TODO: Load open job postings and populate the list.
         }
     }
 }

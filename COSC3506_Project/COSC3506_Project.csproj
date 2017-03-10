@@ -63,6 +63,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="systemAdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="systemAdminForm.Designer.cs">
+      <DependentUpon>systemAdminForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="applicantForm.resx">
       <DependentUpon>applicantForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -78,6 +84,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="systemAdminForm.resx">
+      <DependentUpon>systemAdminForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
