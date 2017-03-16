@@ -35,7 +35,6 @@
             this.btnChangePassword = new System.Windows.Forms.Button();
             this.usersListView = new System.Windows.Forms.ListView();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnLogout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblUserList
@@ -89,6 +88,7 @@
             this.usersListView.Size = new System.Drawing.Size(458, 183);
             this.usersListView.TabIndex = 5;
             this.usersListView.UseCompatibleStateImageBehavior = false;
+            this.usersListView.SelectedIndexChanged += new System.EventHandler(this.usersListView_SelectedIndexChanged);
             // 
             // btnAdd
             // 
@@ -99,23 +99,13 @@
             this.btnAdd.TabIndex = 6;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // btnLogout
-            // 
-            this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.Location = new System.Drawing.Point(398, 16);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(75, 23);
-            this.btnLogout.TabIndex = 7;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            // 
-            // systemAdminForm
+            // SystemAdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(485, 297);
-            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.usersListView);
             this.Controls.Add(this.btnChangePassword);
@@ -125,8 +115,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "systemAdminForm";
+            this.Name = "SystemAdminForm";
             this.Text = "Administrator Panel - EARS - International School of Software";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SystemAdminForm_FormClosed);
             this.Load += new System.EventHandler(this.systemAdminForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -141,6 +132,5 @@
         private System.Windows.Forms.Button btnChangePassword;
         private System.Windows.Forms.ListView usersListView;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnLogout;
     }
 }

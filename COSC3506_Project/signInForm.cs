@@ -8,12 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MySql.Data.MySqlClient;
+
 namespace COSC3506_Project
 {
     public partial class SignInForm : Form
     {
-        public SignInForm()
+        private DBConnection dbConnection;
+
+        public SignInForm(DBConnection dbConnection)
         {
+            this.dbConnection = dbConnection;
             InitializeComponent();
         }
 
@@ -28,9 +33,52 @@ namespace COSC3506_Project
             {
                 if (txtPassword.TextLength > 0)
                 {
-                    // TODO: User authentication.
-                    // TODO: Create new User object, initialize object with database data.
-                    // TODO: Check user type, display appropriate form.
+                    if (dbConnection.OpenConnection())
+                    {
+                        int memberId = 0;
+                        String username = "";
+                        String password = "";
+                        int securityStatus = 0;
+
+                        MySqlCommand command = new MySqlCommand();
+
+                        command.Connection = dbConnection.getConnection();
+                        command.CommandText = "SELECT member_id, username, password, security_status FROM user_login WHERE username=@username";
+
+                        command.Parameters.AddWithValue("@username", this.txtUsername.Text);
+
+                        using (MySqlDataReader dr = command.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                memberId = Int32.Parse(dr[0].ToString());
+                                username = dr[1].ToString();
+                                password = dr[2].ToString();
+                                securityStatus = Int32.Parse(dr[3].ToString());
+                            }
+                        }
+
+                        dbConnection.CloseConnection();
+                        command.Dispose();
+
+                        if (username.Equals(txtUsername.Text) && password.Equals(txtPassword.Text))
+                        {
+                            switch (securityStatus)
+                            {
+                                case 1: // System administrator
+                                    SystemAdminForm systemAdminForm = new SystemAdminForm(dbConnection);
+                                    systemAdminForm.Show();
+                                    this.Close();
+                                    break;
+                                case 2: // Secretary
+                                    break;
+                                case 3: // Committee
+                                    break;
+                                case 4: // Chair
+                                    break;
+                            }
+                        }
+                    }
                 }
                 else
                     MessageBox.Show(this, "Please enter a valid password.", "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Error);

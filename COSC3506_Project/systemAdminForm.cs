@@ -8,12 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MySql.Data.MySqlClient;
+
 namespace COSC3506_Project
 {
     public partial class SystemAdminForm : Form
     {
-        public SystemAdminForm()
+        private DBConnection dbConnection;
+
+        public SystemAdminForm(DBConnection dbConnection)
         {
+            this.dbConnection = dbConnection;
             InitializeComponent();
         }
 
@@ -23,12 +28,60 @@ namespace COSC3506_Project
             usersListView.GridLines = true;
             usersListView.FullRowSelect = true;
 
-            usersListView.Columns.Add("Last Name", 100);
-            usersListView.Columns.Add("First Name", 100);
-            usersListView.Columns.Add("Type", 100);
-            usersListView.Columns.Add("E-mail", 200);
+            usersListView.Columns.Add("Member ID", 150);
+            usersListView.Columns.Add("First Name", 150);
+            usersListView.Columns.Add("Last Name", 150);
 
-            // TODO: Populate the user list.
+            if (dbConnection.OpenConnection())
+            {
+                MySqlCommand command = new MySqlCommand();
+
+                command.Connection = dbConnection.getConnection();
+                command.CommandText = "SELECT member_id, f_name, l_name FROM member_info";
+
+                using (MySqlDataReader dr = command.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        ListViewItem item = new ListViewItem();
+
+                        item.Text = dr[0].ToString();
+                        item.SubItems.Add(dr[1].ToString());
+                        item.SubItems.Add(dr[2].ToString());
+
+                        usersListView.Items.Add(item);
+                    }
+                }
+
+                dbConnection.CloseConnection();
+                command.Dispose();
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            AddUserForm addUserForm = new AddUserForm();
+            addUserForm.ShowDialog();
+        }
+
+        private void SystemAdminForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void usersListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (usersListView.SelectedItems.Count > 0)
+            {
+                btnModifyUser.Enabled = true;
+                btnDeleteUser.Enabled = true;
+                btnChangePassword.Enabled = true;
+            } else
+            {
+                btnModifyUser.Enabled = false;
+                btnDeleteUser.Enabled = false;
+                btnChangePassword.Enabled = false;
+            }
         }
     }
 }

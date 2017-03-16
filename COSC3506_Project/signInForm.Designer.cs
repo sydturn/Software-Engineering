@@ -36,8 +36,6 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.chkRememberUsername = new System.Windows.Forms.CheckBox();
             this.btnSignIn = new System.Windows.Forms.Button();
-            this.btnRegister = new System.Windows.Forms.Button();
-            this.lblApplicantRegister = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblEARSSignOnHeader
@@ -88,9 +86,9 @@
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(170, 167);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(172, 29);
             this.txtPassword.TabIndex = 4;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // chkRememberUsername
             // 
@@ -118,34 +116,11 @@
             this.btnSignIn.UseVisualStyleBackColor = true;
             this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
-            // btnRegister
-            // 
-            this.btnRegister.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnRegister.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.Location = new System.Drawing.Point(247, 276);
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(95, 34);
-            this.btnRegister.TabIndex = 7;
-            this.btnRegister.Text = "Register";
-            this.btnRegister.UseVisualStyleBackColor = true;
-            // 
-            // lblApplicantRegister
-            // 
-            this.lblApplicantRegister.AutoSize = true;
-            this.lblApplicantRegister.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApplicantRegister.Location = new System.Drawing.Point(75, 276);
-            this.lblApplicantRegister.Name = "lblApplicantRegister";
-            this.lblApplicantRegister.Size = new System.Drawing.Size(166, 34);
-            this.lblApplicantRegister.TabIndex = 8;
-            this.lblApplicantRegister.Text = "If you are an applicant and\r\nneed to register, click here:";
-            // 
-            // signInForm
+            // SignInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(430, 364);
-            this.Controls.Add(this.lblApplicantRegister);
-            this.Controls.Add(this.btnRegister);
+            this.ClientSize = new System.Drawing.Size(430, 285);
             this.Controls.Add(this.btnSignIn);
             this.Controls.Add(this.chkRememberUsername);
             this.Controls.Add(this.txtPassword);
@@ -156,7 +131,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "signInForm";
+            this.Name = "SignInForm";
             this.Text = "EARS - International School of Software";
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.ResumeLayout(false);
@@ -173,8 +148,6 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.CheckBox chkRememberUsername;
         private System.Windows.Forms.Button btnSignIn;
-        private System.Windows.Forms.Button btnRegister;
-        private System.Windows.Forms.Label lblApplicantRegister;
     }
 }
 

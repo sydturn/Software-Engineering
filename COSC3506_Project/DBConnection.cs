@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 
 namespace COSC3506_Project
 {
-    class DBConnection
+    public class DBConnection
     {
         private MySqlConnection connection;
         private string server, database, password, username;
@@ -32,7 +32,7 @@ namespace COSC3506_Project
         }
 
         /// <summary>
-        /// Build the connection string and initialize the connection object.
+        /// Build the connection string and initialize MySqlConnection.
         /// </summary>
         private void Initialize()
         {
@@ -84,6 +84,11 @@ namespace COSC3506_Project
                 Console.WriteLine(e.Message);
                 return false;
             }
+        }
+
+        public MySqlConnection getConnection()
+        {
+            return connection;
         }
     }
 }
