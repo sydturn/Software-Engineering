@@ -38,11 +38,11 @@
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.lblEmail = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.chkAvailable = new System.Windows.Forms.CheckBox();
             this.btnFinish = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.lblSecurityLevel = new System.Windows.Forms.Label();
+            this.securityComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblFirstName
@@ -88,6 +88,7 @@
             // 
             // departmentComboBox
             // 
+            this.departmentComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.departmentComboBox.FormattingEnabled = true;
             this.departmentComboBox.Location = new System.Drawing.Point(100, 95);
             this.departmentComboBox.Name = "departmentComboBox";
@@ -127,23 +128,6 @@
             this.txtPassword.TabIndex = 9;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
-            // lblEmail
-            // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(264, 98);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(44, 15);
-            this.lblEmail.TabIndex = 10;
-            this.lblEmail.Text = "E-mail:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(333, 95);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(138, 23);
-            this.textBox1.TabIndex = 11;
-            this.textBox1.UseSystemPasswordChar = true;
-            // 
             // chkAvailable
             // 
             this.chkAvailable.AutoSize = true;
@@ -156,13 +140,13 @@
             // 
             // btnFinish
             // 
-            this.btnFinish.Enabled = false;
             this.btnFinish.Location = new System.Drawing.Point(398, 171);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Size = new System.Drawing.Size(73, 32);
             this.btnFinish.TabIndex = 13;
             this.btnFinish.Text = "Finish";
             this.btnFinish.UseVisualStyleBackColor = true;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // btnCancel
             // 
@@ -173,16 +157,34 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // lblSecurityLevel
+            // 
+            this.lblSecurityLevel.AutoSize = true;
+            this.lblSecurityLevel.Location = new System.Drawing.Point(264, 98);
+            this.lblSecurityLevel.Name = "lblSecurityLevel";
+            this.lblSecurityLevel.Size = new System.Drawing.Size(52, 15);
+            this.lblSecurityLevel.TabIndex = 15;
+            this.lblSecurityLevel.Text = "Security:";
+            // 
+            // securityComboBox
+            // 
+            this.securityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.securityComboBox.FormattingEnabled = true;
+            this.securityComboBox.Location = new System.Drawing.Point(333, 95);
+            this.securityComboBox.Name = "securityComboBox";
+            this.securityComboBox.Size = new System.Drawing.Size(138, 23);
+            this.securityComboBox.TabIndex = 16;
+            // 
             // AddUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(507, 215);
+            this.Controls.Add(this.securityComboBox);
+            this.Controls.Add(this.lblSecurityLevel);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.chkAvailable);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.txtUsername);
@@ -199,6 +201,7 @@
             this.MinimizeBox = false;
             this.Name = "AddUserForm";
             this.Text = "Add User";
+            this.Load += new System.EventHandler(this.AddUserForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,10 +219,10 @@
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.CheckBox chkAvailable;
         private System.Windows.Forms.Button btnFinish;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label lblSecurityLevel;
+        private System.Windows.Forms.ComboBox securityComboBox;
     }
 }
