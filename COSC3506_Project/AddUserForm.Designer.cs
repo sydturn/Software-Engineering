@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddUserForm));
             this.lblFirstName = new System.Windows.Forms.Label();
             this.lblLastName = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
-            this.lblDepartment = new System.Windows.Forms.Label();
-            this.departmentComboBox = new System.Windows.Forms.ComboBox();
             this.lblUsername = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
@@ -77,24 +76,6 @@
             this.txtLastName.Size = new System.Drawing.Size(138, 23);
             this.txtLastName.TabIndex = 3;
             // 
-            // lblDepartment
-            // 
-            this.lblDepartment.AutoSize = true;
-            this.lblDepartment.Location = new System.Drawing.Point(14, 98);
-            this.lblDepartment.Name = "lblDepartment";
-            this.lblDepartment.Size = new System.Drawing.Size(73, 15);
-            this.lblDepartment.TabIndex = 4;
-            this.lblDepartment.Text = "Department:";
-            // 
-            // departmentComboBox
-            // 
-            this.departmentComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.departmentComboBox.FormattingEnabled = true;
-            this.departmentComboBox.Location = new System.Drawing.Point(100, 95);
-            this.departmentComboBox.Name = "departmentComboBox";
-            this.departmentComboBox.Size = new System.Drawing.Size(138, 23);
-            this.departmentComboBox.TabIndex = 5;
-            // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
@@ -131,7 +112,7 @@
             // chkAvailable
             // 
             this.chkAvailable.AutoSize = true;
-            this.chkAvailable.Location = new System.Drawing.Point(397, 135);
+            this.chkAvailable.Location = new System.Drawing.Point(397, 99);
             this.chkAvailable.Name = "chkAvailable";
             this.chkAvailable.Size = new System.Drawing.Size(74, 19);
             this.chkAvailable.TabIndex = 12;
@@ -140,9 +121,9 @@
             // 
             // btnFinish
             // 
-            this.btnFinish.Location = new System.Drawing.Point(398, 171);
+            this.btnFinish.Location = new System.Drawing.Point(398, 143);
             this.btnFinish.Name = "btnFinish";
-            this.btnFinish.Size = new System.Drawing.Size(73, 32);
+            this.btnFinish.Size = new System.Drawing.Size(73, 26);
             this.btnFinish.TabIndex = 13;
             this.btnFinish.Text = "Finish";
             this.btnFinish.UseVisualStyleBackColor = true;
@@ -150,17 +131,18 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(319, 171);
+            this.btnCancel.Location = new System.Drawing.Point(319, 143);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(73, 32);
+            this.btnCancel.Size = new System.Drawing.Size(73, 26);
             this.btnCancel.TabIndex = 14;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // lblSecurityLevel
             // 
             this.lblSecurityLevel.AutoSize = true;
-            this.lblSecurityLevel.Location = new System.Drawing.Point(264, 98);
+            this.lblSecurityLevel.Location = new System.Drawing.Point(14, 98);
             this.lblSecurityLevel.Name = "lblSecurityLevel";
             this.lblSecurityLevel.Size = new System.Drawing.Size(52, 15);
             this.lblSecurityLevel.TabIndex = 15;
@@ -170,7 +152,7 @@
             // 
             this.securityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.securityComboBox.FormattingEnabled = true;
-            this.securityComboBox.Location = new System.Drawing.Point(333, 95);
+            this.securityComboBox.Location = new System.Drawing.Point(100, 95);
             this.securityComboBox.Name = "securityComboBox";
             this.securityComboBox.Size = new System.Drawing.Size(138, 23);
             this.securityComboBox.TabIndex = 16;
@@ -179,7 +161,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 215);
+            this.ClientSize = new System.Drawing.Size(492, 185);
             this.Controls.Add(this.securityComboBox);
             this.Controls.Add(this.lblSecurityLevel);
             this.Controls.Add(this.btnCancel);
@@ -189,14 +171,13 @@
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.lblUsername);
-            this.Controls.Add(this.departmentComboBox);
-            this.Controls.Add(this.lblDepartment);
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.lblLastName);
             this.Controls.Add(this.lblFirstName);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddUserForm";
@@ -213,8 +194,6 @@
         private System.Windows.Forms.Label lblLastName;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtLastName;
-        private System.Windows.Forms.Label lblDepartment;
-        private System.Windows.Forms.ComboBox departmentComboBox;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label lblPassword;

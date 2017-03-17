@@ -55,6 +55,12 @@
     <Compile Include="AddUserForm.Designer.cs">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PasswordResetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PasswordResetForm.Designer.cs">
+      <DependentUpon>PasswordResetForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SecretaryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
     </Compile>
     <EmbeddedResource Include="AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordResetForm.resx">
+      <DependentUpon>PasswordResetForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SignInForm.resx">
       <DependentUpon>SignInForm.cs</DependentUpon>

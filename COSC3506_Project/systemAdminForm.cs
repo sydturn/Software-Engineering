@@ -31,6 +31,17 @@ namespace COSC3506_Project
             usersListView.Columns.Add("Member ID", 150);
             usersListView.Columns.Add("First Name", 150);
             usersListView.Columns.Add("Last Name", 150);
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            AddUserForm addUserForm = new AddUserForm(dbConnection);
+            addUserForm.ShowDialog();
+        }
+
+        public void RefreshUserList()
+        {
+            usersListView.Items.Clear();
 
             if (dbConnection.OpenConnection())
             {
@@ -58,12 +69,6 @@ namespace COSC3506_Project
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            AddUserForm addUserForm = new AddUserForm(dbConnection);
-            addUserForm.ShowDialog();
-        }
-
         private void SystemAdminForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
@@ -82,6 +87,64 @@ namespace COSC3506_Project
                 btnDeleteUser.Enabled = false;
                 btnChangePassword.Enabled = false;
             }
+        }
+
+        private void SystemAdminForm_Activated(object sender, EventArgs e)
+        {
+            Console.WriteLine("Form active, refreshing user list.");
+            RefreshUserList();
+        }
+
+        private void btnDeleteUser_Click(object sender, EventArgs e)
+        {
+            int id = Int32.Parse(usersListView.SelectedItems[0].Text);
+
+            var result = MessageBox.Show(this, "Are you sure you would like to delete this user? This can't be undone.", "Delete User", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            switch (result)
+            {
+                case DialogResult.Yes:
+                    if (dbConnection.OpenConnection())
+                    {
+                        MySqlCommand command = new MySqlCommand();
+
+                        command.Connection = dbConnection.getConnection();
+                        command.CommandText = "DELETE FROM member_info WHERE member_id=@id";
+
+                        command.Parameters.AddWithValue("@id", id);
+
+                        command.ExecuteNonQuery();
+
+                        command.Connection = dbConnection.getConnection();
+                        command.CommandText = "DELETE FROM user_login WHERE member_id=@id";
+
+                        command.ExecuteNonQuery();
+
+                        dbConnection.CloseConnection();
+                        command.Dispose();
+
+                        MessageBox.Show(this, "User successfully deleted.", "User Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        btnDeleteUser.Enabled = false;
+                        btnModifyUser.Enabled = false;
+                        btnChangePassword.Enabled = false;
+                    }
+                    break;
+                case DialogResult.No:
+                    break;
+            }
+        }
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            int id = Int32.Parse(usersListView.SelectedItems[0].Text);
+
+            PasswordResetForm passwordResetForm = new PasswordResetForm(dbConnection, id);
+            passwordResetForm.ShowDialog();
+
+            btnDeleteUser.Enabled = false;
+            btnModifyUser.Enabled = false;
+            btnChangePassword.Enabled = false;
         }
     }
 }

@@ -44,6 +44,8 @@ namespace COSC3506_Project
 
             if (dbConnection.OpenConnection())
             {
+                int id = 0;
+
                 MySqlCommand command = new MySqlCommand();
 
                 command.Connection = dbConnection.getConnection();
@@ -52,6 +54,21 @@ namespace COSC3506_Project
                 command.Parameters.AddWithValue("@username", txtUsername.Text);
                 command.Parameters.AddWithValue("@password", txtPassword.Text);
                 command.Parameters.AddWithValue("@securityStatus", securityStatus);
+
+                command.ExecuteNonQuery();
+
+                command.CommandText = "SELECT member_id FROM user_login WHERE username=@username";
+
+                using (MySqlDataReader dr = command.ExecuteReader())
+                {
+                    while (dr.Read())
+                        id = Int32.Parse(dr[0].ToString());
+                }
+
+                command.CommandText = "INSERT INTO member_info (member_id, f_name, l_name) VALUES (@id, @firstName, @lastName)";
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@firstName", txtFirstName.Text);
+                command.Parameters.AddWithValue("@lastName", txtLastName.Text);
 
                 command.ExecuteNonQuery();
 
@@ -71,6 +88,11 @@ namespace COSC3506_Project
             securityComboBox.Items.Add("Chairperson");
 
             securityComboBox.SelectedIndex = 0;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

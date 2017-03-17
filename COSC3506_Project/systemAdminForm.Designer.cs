@@ -68,6 +68,7 @@
             this.btnDeleteUser.TabIndex = 3;
             this.btnDeleteUser.Text = "Delete";
             this.btnDeleteUser.UseVisualStyleBackColor = true;
+            this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
             // 
             // btnChangePassword
             // 
@@ -79,6 +80,7 @@
             this.btnChangePassword.TabIndex = 4;
             this.btnChangePassword.Text = "Change Password";
             this.btnChangePassword.UseVisualStyleBackColor = true;
+            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
             // usersListView
             // 
@@ -117,6 +119,7 @@
             this.MaximizeBox = false;
             this.Name = "SystemAdminForm";
             this.Text = "Administrator Panel - EARS - International School of Software";
+            this.Activated += new System.EventHandler(this.SystemAdminForm_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SystemAdminForm_FormClosed);
             this.Load += new System.EventHandler(this.systemAdminForm_Load);
             this.ResumeLayout(false);
