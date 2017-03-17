@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MySql.Data.MySqlClient;
+
 namespace COSC3506_Project
 {
     public partial class PasswordResetForm : Form
@@ -41,6 +43,25 @@ namespace COSC3506_Project
             {
                 MessageBox.Show(this, "The paasswords entered do not match.", "Password Reset", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+
+            if (dbConnection.OpenConnection())
+            {
+                MySqlCommand command = new MySqlCommand();
+
+                command.Connection = dbConnection.getConnection();
+                command.CommandText = "UPDATE user_login SET password = @password WHERE member_id=@id";
+
+                command.Parameters.AddWithValue("@password", txtConfirmPassword.Text);
+                command.Parameters.AddWithValue("@id", id);
+
+                command.ExecuteNonQuery();
+
+                dbConnection.CloseConnection();
+                command.Dispose();
+
+                MessageBox.Show(this, "Password successfully updated.", "Password Reset", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
         }
 

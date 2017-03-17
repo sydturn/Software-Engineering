@@ -24,6 +24,12 @@ namespace COSC3506_Project
 
         private void btnFinish_Click(object sender, EventArgs e)
         {
+            if (txtFirstName.TextLength < 1 || txtLastName.TextLength < 1 || txtUsername.TextLength < 1 || txtPassword.TextLength < 1)
+            {
+                MessageBox.Show(this, "You must fill in all fields.", "Add User", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             int securityStatus = 0;
 
             switch(securityComboBox.Text)
@@ -93,6 +99,14 @@ namespace COSC3506_Project
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void securityComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (securityComboBox.SelectedIndex != 2)
+                chkAvailable.Enabled = false;
+            else
+                chkAvailable.Enabled = true;
         }
     }
 }

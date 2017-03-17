@@ -156,6 +156,7 @@
             this.securityComboBox.Name = "securityComboBox";
             this.securityComboBox.Size = new System.Drawing.Size(138, 23);
             this.securityComboBox.TabIndex = 16;
+            this.securityComboBox.SelectedIndexChanged += new System.EventHandler(this.securityComboBox_SelectedIndexChanged);
             // 
             // AddUserForm
             // 

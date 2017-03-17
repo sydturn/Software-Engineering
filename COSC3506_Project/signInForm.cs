@@ -77,6 +77,9 @@ namespace COSC3506_Project
                                 case 4: // Chair
                                     break;
                             }
+                        } else
+                        {
+                            MessageBox.Show(this, "Invalid username or password.", "Sign In", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }

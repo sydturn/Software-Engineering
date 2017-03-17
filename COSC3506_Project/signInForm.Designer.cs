@@ -40,21 +40,19 @@
             // 
             // lblEARSSignOnHeader
             // 
-            this.lblEARSSignOnHeader.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblEARSSignOnHeader.AutoSize = true;
             this.lblEARSSignOnHeader.Font = new System.Drawing.Font("Segoe UI Semilight", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEARSSignOnHeader.Location = new System.Drawing.Point(26, 26);
+            this.lblEARSSignOnHeader.Location = new System.Drawing.Point(87, 31);
             this.lblEARSSignOnHeader.Name = "lblEARSSignOnHeader";
-            this.lblEARSSignOnHeader.Size = new System.Drawing.Size(386, 32);
+            this.lblEARSSignOnHeader.Size = new System.Drawing.Size(132, 32);
             this.lblEARSSignOnHeader.TabIndex = 0;
-            this.lblEARSSignOnHeader.Text = "Please sign into your account below";
+            this.lblEARSSignOnHeader.Text = "EARS Login";
             // 
             // lblUsername
             // 
-            this.lblUsername.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(80, 94);
+            this.lblUsername.Location = new System.Drawing.Point(19, 90);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(84, 21);
             this.lblUsername.TabIndex = 1;
@@ -62,10 +60,9 @@
             // 
             // lblPassword
             // 
-            this.lblPassword.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(80, 170);
+            this.lblPassword.Location = new System.Drawing.Point(19, 138);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(79, 21);
             this.lblPassword.TabIndex = 2;
@@ -73,18 +70,16 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtUsername.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(170, 94);
+            this.txtUsername.Location = new System.Drawing.Point(109, 87);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(172, 29);
             this.txtUsername.TabIndex = 3;
             // 
             // txtPassword
             // 
-            this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(170, 167);
+            this.txtPassword.Location = new System.Drawing.Point(109, 135);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(172, 29);
             this.txtPassword.TabIndex = 4;
@@ -92,10 +87,9 @@
             // 
             // chkRememberUsername
             // 
-            this.chkRememberUsername.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.chkRememberUsername.AutoSize = true;
             this.chkRememberUsername.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkRememberUsername.Location = new System.Drawing.Point(179, 129);
+            this.chkRememberUsername.Location = new System.Drawing.Point(118, 182);
             this.chkRememberUsername.Name = "chkRememberUsername";
             this.chkRememberUsername.Size = new System.Drawing.Size(173, 21);
             this.chkRememberUsername.TabIndex = 5;
@@ -106,9 +100,8 @@
             // 
             // btnSignIn
             // 
-            this.btnSignIn.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnSignIn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignIn.Location = new System.Drawing.Point(247, 211);
+            this.btnSignIn.Location = new System.Drawing.Point(186, 221);
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(95, 34);
             this.btnSignIn.TabIndex = 6;
@@ -120,7 +113,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(430, 285);
+            this.ClientSize = new System.Drawing.Size(313, 285);
             this.Controls.Add(this.btnSignIn);
             this.Controls.Add(this.chkRememberUsername);
             this.Controls.Add(this.txtPassword);
