@@ -18,6 +18,7 @@ When making a query to the database, follow this:
       while (dr.Read())
       {
         String firstItem = dr[0].ToString();
+        int secondItem = Int32.Parse(dr[1].ToString());
       }
     }
     
