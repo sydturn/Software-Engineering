@@ -1,3 +1,10 @@
+## Project To-do List
+
+#### System Administrator Form
+
+* Modify users.
+* Ability to add/delete postings when secretary form is done.
+
 ## Notes
 
 #### Basic Database Queries
@@ -29,10 +36,3 @@ When accessing the database:
     command.Dispose(); // Dispose of the command object after use.
   }    
 ```
-
-## Project To-do List
-
-#### System Administrator Form
-
-* Modify users.
-* Ability to add/delete postings when secretary form is done.
