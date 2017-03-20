@@ -7,12 +7,12 @@ When making a query to the database, follow this:
 ```C#
   if (dbConnection.OpenConnection()) // Check and open the database connection.
   {
-    MySqlCommand command = new MySqlCommand(); // Used to create a query command.
+    MySqlCommand command = new MySqlCommand(); // Used to create a MySQL command.
     
     command.Connection = dbConnection.getConnection(); // Assigns the database to the command.
-    command.CommandText = "SELECT * from example"; // The query string.
+    command.CommandText = "SELECT * from example"; // The command string.
     
-    // OPTION #1: If reading from the database:  
+    // OPTION #1: If reading from the database (query):  
     using (MySqlDataReader dr = command.ExecuteReader())
     {
       while (dr.Read())
@@ -22,7 +22,7 @@ When making a query to the database, follow this:
       }
     }
     
-    // OPTION #2: If using other queries like insert, update, etc:
+    // OPTION #2: If using other command like insert, update, etc:
     command.ExecuteNonQuery();
     
     dbConnection.CloseConnection(); // Close the connection.
