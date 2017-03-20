@@ -2,7 +2,7 @@
 
 #### Basic Database Queries
 
-When making a query to the database, follow this:
+When accessing the database:
 
 ```C#
   if (dbConnection.OpenConnection()) // Check and open the database connection.
