@@ -28,9 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // SecretaryForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "SecretaryForm";
             this.Text = "SecretaryForm";
+            this.Load += new System.EventHandler(this.SecretaryForm_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

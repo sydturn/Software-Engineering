@@ -12,9 +12,17 @@ namespace COSC3506_Project
 {
     public partial class SecretaryForm : Form
     {
-        public SecretaryForm()
+        private DBConnection dbConnection;
+
+        public SecretaryForm(DBConnection dbConnection)
         {
+            this.dbConnection = dbConnection;
             InitializeComponent();
+        }
+
+        private void SecretaryForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

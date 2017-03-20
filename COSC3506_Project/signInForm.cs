@@ -71,6 +71,9 @@ namespace COSC3506_Project
                                     this.Close();
                                     break;
                                 case 2: // Secretary
+                                    SecretaryForm secretaryForm = new SecretaryForm(dbConnection);
+                                    secretaryForm.Show();
+                                    this.Close();
                                     break;
                                 case 3: // Committee
                                     break;

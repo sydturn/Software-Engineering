@@ -87,6 +87,9 @@
     <EmbeddedResource Include="PasswordResetForm.resx">
       <DependentUpon>PasswordResetForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SecretaryForm.resx">
+      <DependentUpon>SecretaryForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SignInForm.resx">
       <DependentUpon>SignInForm.cs</DependentUpon>
     </EmbeddedResource>
