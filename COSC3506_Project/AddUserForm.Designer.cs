@@ -35,13 +35,13 @@
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
-            this.lblPassword = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
             this.chkAvailable = new System.Windows.Forms.CheckBox();
             this.btnFinish = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblSecurityLevel = new System.Windows.Forms.Label();
             this.securityComboBox = new System.Windows.Forms.ComboBox();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblFirstName
@@ -92,23 +92,6 @@
             this.txtUsername.Size = new System.Drawing.Size(138, 23);
             this.txtUsername.TabIndex = 7;
             // 
-            // lblPassword
-            // 
-            this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(264, 61);
-            this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(60, 15);
-            this.lblPassword.TabIndex = 8;
-            this.lblPassword.Text = "Password:";
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(333, 58);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(138, 23);
-            this.txtPassword.TabIndex = 9;
-            this.txtPassword.UseSystemPasswordChar = true;
-            // 
             // chkAvailable
             // 
             this.chkAvailable.AutoSize = true;
@@ -158,6 +141,23 @@
             this.securityComboBox.TabIndex = 16;
             this.securityComboBox.SelectedIndexChanged += new System.EventHandler(this.securityComboBox_SelectedIndexChanged);
             // 
+            // lblPassword
+            // 
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Location = new System.Drawing.Point(264, 61);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(60, 15);
+            this.lblPassword.TabIndex = 8;
+            this.lblPassword.Text = "Password:";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(333, 58);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(138, 23);
+            this.txtPassword.TabIndex = 9;
+            this.txtPassword.UseSystemPasswordChar = true;
+            // 
             // AddUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -197,12 +197,12 @@
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.CheckBox chkAvailable;
         private System.Windows.Forms.Button btnFinish;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblSecurityLevel;
         private System.Windows.Forms.ComboBox securityComboBox;
+        private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.TextBox txtPassword;
     }
 }

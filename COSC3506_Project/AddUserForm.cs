@@ -51,6 +51,12 @@ namespace COSC3506_Project
             if (dbConnection.OpenConnection())
             {
                 int id = 0;
+                int available;
+
+                if (chkAvailable.Checked == true)
+                    available = 1;
+                else
+                    available = 0;
 
                 MySqlCommand command = new MySqlCommand();
 
@@ -71,10 +77,11 @@ namespace COSC3506_Project
                         id = Int32.Parse(dr[0].ToString());
                 }
 
-                command.CommandText = "INSERT INTO member_info (member_id, f_name, l_name) VALUES (@id, @firstName, @lastName)";
+                command.CommandText = "INSERT INTO member_info (member_id, f_name, l_name, available) VALUES (@id, @firstName, @lastName, @available)";
                 command.Parameters.AddWithValue("@id", id);
                 command.Parameters.AddWithValue("@firstName", txtFirstName.Text);
                 command.Parameters.AddWithValue("@lastName", txtLastName.Text);
+                command.Parameters.AddWithValue("@available", available);
 
                 command.ExecuteNonQuery();
 
