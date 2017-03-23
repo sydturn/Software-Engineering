@@ -126,6 +126,7 @@
             this.MaximizeBox = false;
             this.Name = "SignInForm";
             this.Text = "EARS - International School of Software";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SignInForm_FormClosed);
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
