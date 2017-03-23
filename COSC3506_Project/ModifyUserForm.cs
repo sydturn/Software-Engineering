@@ -88,5 +88,70 @@ namespace COSC3506_Project
         {
             this.Close();
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            int available;
+            int rowCount = 0;
+
+            if (txtFirstName.TextLength < 1 || txtLastName.TextLength < 1 || txtUsername.TextLength < 1)
+            {
+                MessageBox.Show(this, "You must fill in all fields.", "Modify User", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (dbConnection.OpenConnection())
+            {
+                MySqlCommand command = new MySqlCommand();
+
+                command.Connection = dbConnection.getConnection();
+                command.CommandText = "SELECT username FROM user_login WHERE username = @username AND member_id != @id";
+
+                command.Parameters.AddWithValue("@id", memberID);
+                command.Parameters.AddWithValue("@username", txtUsername.Text);
+
+                using (MySqlDataReader dr = command.ExecuteReader())
+                {
+                    while (dr.Read())
+                        rowCount++;
+                }
+
+                if (rowCount > 0)
+                {
+                    dbConnection.CloseConnection();
+                    command.Dispose();
+
+                    MessageBox.Show(this, "The username you entered already exists.", "Modify User", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return;
+                }
+
+                if (chkAvailable.Checked == true)
+                    available = 1;
+                else
+                    available = 0;
+
+                command.CommandText = "UPDATE member_info SET f_name = @firstName, l_name = @lastName, available = @available WHERE member_id = @id";
+
+                command.Parameters.AddWithValue("@firstName", txtFirstName.Text);
+                command.Parameters.AddWithValue("@lastName", txtLastName.Text);
+                command.Parameters.AddWithValue("@available", available);
+
+                command.ExecuteNonQuery();
+
+                command.CommandText = "UPDATE user_login SET username = @username, security_status = @securityStatus WHERE member_id = @id";
+
+                command.Parameters.AddWithValue("@securityStatus", securityComboBox.SelectedIndex + 1);
+
+                command.ExecuteNonQuery();
+
+                dbConnection.CloseConnection();
+                command.Dispose();
+
+                MessageBox.Show(this, "User successfuly updated.", "Modify User", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                this.Close();
+            }
+        }
     }
 }
