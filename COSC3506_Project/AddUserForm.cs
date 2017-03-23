@@ -30,23 +30,7 @@ namespace COSC3506_Project
                 return;
             }
 
-            int securityStatus = 0;
-
-            switch(securityComboBox.Text)
-            {
-                case "Administrator":
-                    securityStatus = 1;
-                    break;
-                case "Secretary":
-                    securityStatus = 2;
-                    break;
-                case "Committee Member":
-                    securityStatus = 3;
-                    break;
-                case "Chairperson":
-                    securityStatus = 4;
-                    break;
-            }
+            int securityStatus = securityComboBox.SelectedIndex + 1;
 
             if (dbConnection.OpenConnection())
             {
