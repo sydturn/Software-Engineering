@@ -15,6 +15,7 @@ namespace COSC3506_Project
     public partial class SignInForm : Form
     {
         private DBConnection dbConnection;
+        private bool signIn;
 
         public SignInForm(DBConnection dbConnection)
         {
@@ -68,16 +69,20 @@ namespace COSC3506_Project
                                 case 1: // System administrator
                                     SystemAdminForm systemAdminForm = new SystemAdminForm(dbConnection);
                                     systemAdminForm.Show();
+                                    signIn = true;
                                     this.Close();
                                     break;
                                 case 2: // Secretary
                                     SecretaryForm secretaryForm = new SecretaryForm(dbConnection);
                                     secretaryForm.Show();
+                                    signIn = true;
                                     this.Close();
                                     break;
                                 case 3: // Committee
+                                    signIn = true;
                                     break;
                                 case 4: // Chair
+                                    signIn = true;
                                     break;
                             }
                         } else
@@ -100,7 +105,8 @@ namespace COSC3506_Project
 
         private void SignInForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Close();
+            if (!signIn)
+                Application.Exit();
         }
     }
 }
