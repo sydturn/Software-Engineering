@@ -100,7 +100,7 @@ namespace COSC3506_Project
 
         private void SignInForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
     }
 }
