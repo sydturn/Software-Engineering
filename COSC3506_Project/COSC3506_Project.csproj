@@ -73,6 +73,12 @@
     <Compile Include="DownloadResumeForm.Designer.cs">
       <DependentUpon>DownloadResumeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModifyUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifyUserForm.Designer.cs">
+      <DependentUpon>ModifyUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewApplicationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,7 +147,6 @@
     <EmbeddedResource Include="SystemAdminForm.resx">
       <DependentUpon>SystemAdminForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
