@@ -48,6 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddApplicationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddApplicationForm.Designer.cs">
+      <DependentUpon>AddApplicationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddJobForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddJobForm.Designer.cs">
+      <DependentUpon>AddJobForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DBConnection.cs" />
     <Compile Include="AddUserForm.cs">
       <SubType>Form</SubType>
@@ -55,11 +67,17 @@
     <Compile Include="AddUserForm.Designer.cs">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModifyUserForm.cs">
+    <Compile Include="DownloadResumeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModifyUserForm.Designer.cs">
-      <DependentUpon>ModifyUserForm.cs</DependentUpon>
+    <Compile Include="DownloadResumeForm.Designer.cs">
+      <DependentUpon>DownloadResumeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewApplicationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewApplicationForm.Designer.cs">
+      <DependentUpon>NewApplicationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PasswordResetForm.cs">
       <SubType>Form</SubType>
@@ -87,6 +105,12 @@
     <Compile Include="SystemAdminForm.Designer.cs">
       <DependentUpon>SystemAdminForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddApplicationForm.resx">
+      <DependentUpon>AddApplicationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddJobForm.resx">
+      <DependentUpon>AddJobForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +138,7 @@
     <EmbeddedResource Include="SystemAdminForm.resx">
       <DependentUpon>SystemAdminForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
