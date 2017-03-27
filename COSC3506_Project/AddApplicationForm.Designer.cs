@@ -65,9 +65,9 @@
             // 
             // btnDownload
             // 
-            this.btnDownload.Location = new System.Drawing.Point(686, 248);
+            this.btnDownload.Location = new System.Drawing.Point(668, 248);
             this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(82, 44);
+            this.btnDownload.Size = new System.Drawing.Size(100, 44);
             this.btnDownload.TabIndex = 3;
             this.btnDownload.Text = "Download";
             this.btnDownload.UseVisualStyleBackColor = true;
