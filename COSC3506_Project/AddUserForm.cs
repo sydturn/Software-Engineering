@@ -30,17 +30,27 @@ namespace COSC3506_Project
                 return;
             }
 
-            int securityStatus = securityComboBox.SelectedIndex + 1;
+            int securityStatus = 0;
+
+            switch(securityComboBox.Text)
+            {
+                case "Administrator":
+                    securityStatus = 1;
+                    break;
+                case "Secretary":
+                    securityStatus = 2;
+                    break;
+                case "Committee Member":
+                    securityStatus = 3;
+                    break;
+                case "Chairperson":
+                    securityStatus = 4;
+                    break;
+            }
 
             if (dbConnection.OpenConnection())
             {
                 int id = 0;
-                int available;
-
-                if (chkAvailable.Checked == true)
-                    available = 1;
-                else
-                    available = 0;
 
                 MySqlCommand command = new MySqlCommand();
 
@@ -61,11 +71,10 @@ namespace COSC3506_Project
                         id = Int32.Parse(dr[0].ToString());
                 }
 
-                command.CommandText = "INSERT INTO member_info (member_id, f_name, l_name, available) VALUES (@id, @firstName, @lastName, @available)";
+                command.CommandText = "INSERT INTO member_info (member_id, f_name, l_name) VALUES (@id, @firstName, @lastName)";
                 command.Parameters.AddWithValue("@id", id);
                 command.Parameters.AddWithValue("@firstName", txtFirstName.Text);
                 command.Parameters.AddWithValue("@lastName", txtLastName.Text);
-                command.Parameters.AddWithValue("@available", available);
 
                 command.ExecuteNonQuery();
 

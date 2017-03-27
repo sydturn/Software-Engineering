@@ -114,8 +114,11 @@
     <EmbeddedResource Include="AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModifyUserForm.resx">
-      <DependentUpon>ModifyUserForm.cs</DependentUpon>
+    <EmbeddedResource Include="DownloadResumeForm.resx">
+      <DependentUpon>DownloadResumeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewApplicationForm.resx">
+      <DependentUpon>NewApplicationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PasswordResetForm.resx">
       <DependentUpon>PasswordResetForm.cs</DependentUpon>

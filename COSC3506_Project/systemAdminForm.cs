@@ -146,17 +146,5 @@ namespace COSC3506_Project
             btnModifyUser.Enabled = false;
             btnChangePassword.Enabled = false;
         }
-
-        private void btnModifyUser_Click(object sender, EventArgs e)
-        {
-            int id = Int32.Parse(usersListView.SelectedItems[0].Text);
-
-            ModifyUserForm modifyUserForm = new ModifyUserForm(dbConnection, id);
-            modifyUserForm.ShowDialog();
-
-            btnDeleteUser.Enabled = false;
-            btnModifyUser.Enabled = false;
-            btnChangePassword.Enabled = false;
-        }
     }
 }
