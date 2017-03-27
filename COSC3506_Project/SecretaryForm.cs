@@ -32,6 +32,7 @@ namespace COSC3506_Project
 
             jobList.Columns.Add("Job ID", 150);
             jobList.Columns.Add("Job Title", 150);
+            jobList.Columns.Add("Job Status", 150);
         }
 
         public void RefreshJobList()
@@ -43,7 +44,7 @@ namespace COSC3506_Project
                 MySqlCommand command = new MySqlCommand();
 
                 command.Connection = dbConnection.getConnection();
-                command.CommandText = "SELECT job_id, job_name FROM dropboxes";
+                command.CommandText = "SELECT job_id, job_name, job_status FROM dropboxes";
 
                 using (MySqlDataReader dr = command.ExecuteReader())
                 {
@@ -53,6 +54,7 @@ namespace COSC3506_Project
 
                         item.Text = dr[0].ToString();
                         item.SubItems.Add(dr[1].ToString());
+                        item.SubItems.Add(dr[2].ToString());
 
                         jobList.Items.Add(item);
                     }
@@ -60,6 +62,14 @@ namespace COSC3506_Project
 
                 dbConnection.CloseConnection();
                 command.Dispose();
+
+                foreach (ListViewItem li in jobList.Items)
+                {
+                    if (li.SubItems[2].Text == "Approved")
+                    {
+                        li.BackColor = Color.LightGreen;
+                    }
+                }
             }
         }
 

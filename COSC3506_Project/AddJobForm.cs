@@ -45,9 +45,10 @@ namespace COSC3506_Project
                     MySqlCommand command = new MySqlCommand();
 
                     command.Connection = dbConnection.getConnection();
-                    command.CommandText = "INSERT INTO dropboxes (job_name, job_path) VALUES (@job_name, @job_path)";
+                    command.CommandText = "INSERT INTO dropboxes (job_name, job_path, job_status) VALUES (@job_name, @job_path, @job_status)";
                     command.Parameters.AddWithValue("@job_name", jobText.Text.Replace(" ", "_"));
                     command.Parameters.AddWithValue("@job_path", newJob.Replace(" ", "_"));
+                    command.Parameters.AddWithValue("@job_status", "Not_Approved");
 
                     command.ExecuteNonQuery();
                     dbConnection.CloseConnection();

@@ -49,7 +49,7 @@
             // 
             this.applicationList.Location = new System.Drawing.Point(13, 13);
             this.applicationList.Name = "applicationList";
-            this.applicationList.Size = new System.Drawing.Size(755, 217);
+            this.applicationList.Size = new System.Drawing.Size(892, 217);
             this.applicationList.TabIndex = 1;
             this.applicationList.UseCompatibleStateImageBehavior = false;
             // 
@@ -65,9 +65,9 @@
             // 
             // btnDownload
             // 
-            this.btnDownload.Location = new System.Drawing.Point(668, 248);
+            this.btnDownload.Location = new System.Drawing.Point(823, 248);
             this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(100, 44);
+            this.btnDownload.Size = new System.Drawing.Size(82, 44);
             this.btnDownload.TabIndex = 3;
             this.btnDownload.Text = "Download";
             this.btnDownload.UseVisualStyleBackColor = true;
@@ -87,7 +87,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 304);
+            this.ClientSize = new System.Drawing.Size(916, 304);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.btnRemove);

@@ -68,7 +68,7 @@
             // 
             this.jobList.Location = new System.Drawing.Point(12, 12);
             this.jobList.Name = "jobList";
-            this.jobList.Size = new System.Drawing.Size(386, 167);
+            this.jobList.Size = new System.Drawing.Size(435, 167);
             this.jobList.TabIndex = 3;
             this.jobList.UseCompatibleStateImageBehavior = false;
             // 
@@ -76,7 +76,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 248);
+            this.ClientSize = new System.Drawing.Size(459, 248);
             this.Controls.Add(this.jobList);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.btnRemove);

@@ -121,12 +121,13 @@ namespace COSC3506_Project
                     MySqlCommand command = new MySqlCommand();
 
                     command.Connection = dbConnection.getConnection();
-                    command.CommandText = "INSERT INTO applications (job_id, name, phone, email, app_path) VALUES (@job_id, @name, @phone, @email, @app_path)";
+                    command.CommandText = "INSERT INTO applications (job_id, name, phone, email, app_path, approved) VALUES (@job_id, @name, @phone, @email, @app_path, @approved)";
                     command.Parameters.AddWithValue("@job_id", jobId);
                     command.Parameters.AddWithValue("@name", name);
                     command.Parameters.AddWithValue("@phone", phone);
                     command.Parameters.AddWithValue("@email", email);
                     command.Parameters.AddWithValue("@app_path", (fileFolder + "/" + fileName));
+                    command.Parameters.AddWithValue("@approved", "No");
 
                     command.ExecuteNonQuery();
                     dbConnection.CloseConnection();

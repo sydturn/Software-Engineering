@@ -50,6 +50,7 @@ namespace COSC3506_Project
             applicationList.Columns.Add("Name", 150);
             applicationList.Columns.Add("Phone", 150);
             applicationList.Columns.Add("Email", 150);
+            applicationList.Columns.Add("Approved", 150);
         }
 
         public void RefreshApplicationList()
@@ -61,7 +62,7 @@ namespace COSC3506_Project
                 MySqlCommand command = new MySqlCommand();
 
                 command.Connection = dbConnection.getConnection();
-                command.CommandText = "SELECT job_id, application_id, name, phone, email FROM applications WHERE job_id = @job_id";
+                command.CommandText = "SELECT job_id, application_id, name, phone, email, approved FROM applications WHERE job_id = @job_id";
                 command.Parameters.AddWithValue("@job_id", jobId);
 
                 using (MySqlDataReader dr = command.ExecuteReader())
@@ -75,6 +76,7 @@ namespace COSC3506_Project
                         item.SubItems.Add(dr[2].ToString());
                         item.SubItems.Add(dr[3].ToString());
                         item.SubItems.Add(dr[4].ToString());
+                        item.SubItems.Add(dr[5].ToString());
 
                         applicationList.Items.Add(item);
                     }
@@ -82,6 +84,14 @@ namespace COSC3506_Project
 
                 dbConnection.CloseConnection();
                 command.Dispose();
+
+                foreach (ListViewItem li in applicationList.Items)
+                {
+                    if (li.SubItems[5].Text == "Yes")
+                    {
+                        li.BackColor = Color.LightGreen;
+                    }
+                }
             }
         }
 
