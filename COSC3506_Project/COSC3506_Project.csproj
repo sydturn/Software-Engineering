@@ -60,6 +60,18 @@
     <Compile Include="AddJobForm.Designer.cs">
       <DependentUpon>AddJobForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChairForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChairForm.Designer.cs">
+      <DependentUpon>ChairForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommitteeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommitteeForm.Designer.cs">
+      <DependentUpon>CommitteeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DBConnection.cs" />
     <Compile Include="AddUserForm.cs">
       <SubType>Form</SubType>
@@ -111,6 +123,12 @@
     <Compile Include="SystemAdminForm.Designer.cs">
       <DependentUpon>SystemAdminForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewApplicationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewApplicationsForm.Designer.cs">
+      <DependentUpon>ViewApplicationsForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddApplicationForm.resx">
       <DependentUpon>AddApplicationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,6 +137,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChairForm.resx">
+      <DependentUpon>ChairForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommitteeForm.resx">
+      <DependentUpon>CommitteeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DownloadResumeForm.resx">
       <DependentUpon>DownloadResumeForm.cs</DependentUpon>
@@ -146,6 +170,9 @@
     </Compile>
     <EmbeddedResource Include="SystemAdminForm.resx">
       <DependentUpon>SystemAdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewApplicationsForm.resx">
+      <DependentUpon>ViewApplicationsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

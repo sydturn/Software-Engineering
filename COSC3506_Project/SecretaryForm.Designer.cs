@@ -71,6 +71,7 @@
             this.jobList.Size = new System.Drawing.Size(435, 167);
             this.jobList.TabIndex = 3;
             this.jobList.UseCompatibleStateImageBehavior = false;
+            this.jobList.SelectedIndexChanged += new System.EventHandler(this.jobList_SelectedIndexChanged);
             // 
             // SecretaryForm
             // 
