@@ -16,7 +16,8 @@ namespace COSC3506_Project
     public partial class CommitteeForm : Form
     {
         private DBConnection dbConnection;
-        private Boolean openAddApp = false;
+        private Boolean openViewAppForm = false;
+        private Boolean openTaggedInFrom = false; 
 
         public CommitteeForm(DBConnection dbConnection)
         {
@@ -81,7 +82,7 @@ namespace COSC3506_Project
 
         private void CommitteeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (openAddApp == false)
+            if (openViewAppForm == false)
                 Application.Exit();
         }
 
@@ -144,15 +145,22 @@ namespace COSC3506_Project
             try
             {
                 string jobId = jobList.SelectedItems[0].Text;
-                ViewApplicationForm addApplicationForm = new ViewApplicationForm(dbConnection, jobId);
-                addApplicationForm.Show();
-                openAddApp = true;
+                ViewApplicationForm viewApplicationForm = new ViewApplicationForm(dbConnection, jobId);
+                viewApplicationForm.Show();
+                openViewAppForm = true;
                 this.Close();
             }
             catch (Exception ex)
             { Console.WriteLine("Job not selected..."); }
         }
 
+        public void btnTags(object sender, EventArgs e)
+        {
+            TaggedInForm taggedInFrom = new TaggedInForm(dbConnection);
+            taggedInFrom.Show();
+            openTaggedInFrom = true;
+            this.Close();
+        }
         private void jobList_SelectedIndexChanged(object sender, EventArgs e)
         {
 

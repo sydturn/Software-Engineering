@@ -30,6 +30,7 @@
         {
             this.viewApp = new System.Windows.Forms.Button();
             this.jobList = new System.Windows.Forms.ListView();
+            this.btnTags = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // viewApp
@@ -49,11 +50,21 @@
             this.jobList.TabIndex = 1;
             this.jobList.UseCompatibleStateImageBehavior = false;
             // 
+            // btnTags
+            // 
+            this.btnTags.Location = new System.Drawing.Point(154, 213);
+            this.btnTags.Name = "btnTags";
+            this.btnTags.Size = new System.Drawing.Size(76, 36);
+            this.btnTags.TabIndex = 2;
+            this.btnTags.Text = "View Tags";
+            this.btnTags.UseVisualStyleBackColor = true;
+            // 
             // CommitteeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(611, 261);
+            this.Controls.Add(this.btnTags);
             this.Controls.Add(this.jobList);
             this.Controls.Add(this.viewApp);
             this.Name = "CommitteeForm";
@@ -67,5 +78,6 @@
 
         private System.Windows.Forms.Button viewApp;
         private System.Windows.Forms.ListView jobList;
+        private System.Windows.Forms.Button btnTags;
     }
 }

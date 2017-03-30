@@ -66,11 +66,23 @@
     <Compile Include="ChairForm.Designer.cs">
       <DependentUpon>ChairForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommentsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommentsForm.Designer.cs">
+      <DependentUpon>CommentsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CommitteeForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CommitteeForm.Designer.cs">
       <DependentUpon>CommitteeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="createCommentsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="createCommentsForm.Designer.cs">
+      <DependentUpon>createCommentsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DBConnection.cs" />
     <Compile Include="AddUserForm.cs">
@@ -123,6 +135,12 @@
     <Compile Include="SystemAdminForm.Designer.cs">
       <DependentUpon>SystemAdminForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TaggedInForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TaggedInForm.Designer.cs">
+      <DependentUpon>TaggedInForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewApplicationsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,8 +159,14 @@
     <EmbeddedResource Include="ChairForm.resx">
       <DependentUpon>ChairForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CommentsForm.resx">
+      <DependentUpon>CommentsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CommitteeForm.resx">
       <DependentUpon>CommitteeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="createCommentsForm.resx">
+      <DependentUpon>createCommentsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DownloadResumeForm.resx">
       <DependentUpon>DownloadResumeForm.cs</DependentUpon>
@@ -170,6 +194,9 @@
     </Compile>
     <EmbeddedResource Include="SystemAdminForm.resx">
       <DependentUpon>SystemAdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TaggedInForm.resx">
+      <DependentUpon>TaggedInForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewApplicationsForm.resx">
       <DependentUpon>ViewApplicationsForm.cs</DependentUpon>

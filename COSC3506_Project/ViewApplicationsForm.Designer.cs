@@ -33,6 +33,7 @@
             this.btnComment = new System.Windows.Forms.Button();
             this.btnTag = new System.Windows.Forms.Button();
             this.btnApprove = new System.Windows.Forms.Button();
+            this.btnDownload = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // applicationList
@@ -45,7 +46,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(255, 210);
+            this.btnBack.Location = new System.Drawing.Point(444, 212);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(76, 39);
             this.btnBack.TabIndex = 1;
@@ -54,15 +55,17 @@
             // 
             // btnComment
             // 
+            this.btnComment.Enabled = false;
             this.btnComment.Location = new System.Drawing.Point(12, 210);
             this.btnComment.Name = "btnComment";
             this.btnComment.Size = new System.Drawing.Size(75, 39);
             this.btnComment.TabIndex = 2;
-            this.btnComment.Text = "Comment";
+            this.btnComment.Text = "Comments";
             this.btnComment.UseVisualStyleBackColor = true;
             // 
             // btnTag
             // 
+            this.btnTag.Enabled = false;
             this.btnTag.Location = new System.Drawing.Point(93, 210);
             this.btnTag.Name = "btnTag";
             this.btnTag.Size = new System.Drawing.Size(75, 39);
@@ -72,6 +75,7 @@
             // 
             // btnApprove
             // 
+            this.btnApprove.Enabled = false;
             this.btnApprove.Location = new System.Drawing.Point(174, 210);
             this.btnApprove.Name = "btnApprove";
             this.btnApprove.Size = new System.Drawing.Size(75, 39);
@@ -79,11 +83,22 @@
             this.btnApprove.Text = "Approve";
             this.btnApprove.UseVisualStyleBackColor = true;
             // 
+            // btnDownload
+            // 
+            this.btnDownload.Enabled = false;
+            this.btnDownload.Location = new System.Drawing.Point(526, 212);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(76, 39);
+            this.btnDownload.TabIndex = 5;
+            this.btnDownload.Text = "Download";
+            this.btnDownload.UseVisualStyleBackColor = true;
+            // 
             // ViewApplicationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 261);
+            this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.btnApprove);
             this.Controls.Add(this.btnTag);
             this.Controls.Add(this.btnComment);
@@ -102,5 +117,6 @@
         private System.Windows.Forms.Button btnComment;
         private System.Windows.Forms.Button btnTag;
         private System.Windows.Forms.Button btnApprove;
+        private System.Windows.Forms.Button btnDownload;
     }
 }

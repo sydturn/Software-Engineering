@@ -16,9 +16,12 @@ namespace COSC3506_Project
     public partial class ViewApplicationForm : Form
     {
 
+        private string tagId; //this will eventually become the id of the selected individual
+        private string appId; //make this the selected app
+        private string memberId; //make this the current member logged in
         private DBConnection dbConnection;
         private string jobId;
-        private Boolean openSecretaryForm = false;
+        private Boolean openCommmitteeForm = false;
 
         public ViewApplicationForm(DBConnection dbConnection, string jobId)
         {
@@ -33,10 +36,28 @@ namespace COSC3506_Project
             RefreshApplicationList();
         }
 
-        private void AddApplicationForm_Closed(object sender, FormClosedEventArgs e)
+        private void ViewApplicationForm_Closed(object sender, FormClosedEventArgs e)
         {
-            if (openSecretaryForm == false)
+            if (openCommmitteeForm == false)
                 Application.Exit();
+        }
+
+        private void applicationList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (applicationList.SelectedItems.Count > 0)
+            {
+                btnComment.Enabled = true;
+                btnTag.Enabled = true;
+                btnApprove.Enabled = true;
+                btnDownload.Enabled = true;
+            }
+            else
+            {
+                btnComment.Enabled = false;
+                btnTag.Enabled = false;
+                btnApprove.Enabled = false;
+                btnDownload.Enabled = false; 
+            }
         }
 
         private void ViewApplicationForm_Load(object sender, EventArgs e)
@@ -97,12 +118,52 @@ namespace COSC3506_Project
 
         private void btnBack_OnClick(object sender, EventArgs e)
         {
-            CommitteeForm secretaryForm = new CommitteeForm(dbConnection);
-            secretaryForm.Show();
-            openSecretaryForm = true;
+            CommitteeForm committeeForm = new CommitteeForm(dbConnection);
+            committeeForm.Show();
+            openCommmitteeForm = true;
             this.Close();
         }
+        public void btnApprove_onClick(object sender, EventArgs e)
+        {
+            if (dbConnection.OpenConnection())
+            {
+                MySqlCommand command = new MySqlCommand();
 
+                command.Connection = dbConnection.getConnection();
+                command.CommandText = "INSERT INTO app_passes (application_id, member_id) VALUES (@application_id, @member_id)";
+                command.Parameters.AddWithValue("@application_id", appId);
+                command.Parameters.AddWithValue("@member_id", memberId);
+
+                command.ExecuteNonQuery();
+                dbConnection.CloseConnection();
+                command.Dispose();
+            }
+            MessageBox.Show("Application Approved!", "EARS System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
+
+             //in the chair's application view, we will query the app_passes database to see if the application has three passes. If not, then it does not show up for the chair.
+        }
+        private void btnTag_OnClick(object sender, EventArgs e)
+        {
+            if (dbConnection.OpenConnection())
+            {
+                MySqlCommand command = new MySqlCommand();
+
+                command.Connection = dbConnection.getConnection();
+                command.CommandText = "INSERT INTO tags (application_id, job_id, member_id, tagee_id, tag_id) VALUES (@application_id, @job_id, @tag_mem_id, @member_id, @tag_id)";
+                command.Parameters.AddWithValue("@application_id", appId);
+                command.Parameters.AddWithValue("@job_id", jobId);
+                command.Parameters.AddWithValue("@tag_mem_id", tagId);
+                command.Parameters.AddWithValue("@tagee_id", memberId);
+                command.Parameters.AddWithValue("@tag_id", appId); //should auto increment, not set up
+
+                command.ExecuteNonQuery();
+                dbConnection.CloseConnection();
+                command.Dispose();
+            }
+            MessageBox.Show("Application Approved!", "EARS System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
+        }
         private string getFilePath(string applicationId)
         {
             string filePath = "";
