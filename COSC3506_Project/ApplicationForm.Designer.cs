@@ -57,9 +57,11 @@
             this.applicationList.Size = new System.Drawing.Size(892, 217);
             this.applicationList.TabIndex = 1;
             this.applicationList.UseCompatibleStateImageBehavior = false;
+            this.applicationList.SelectedIndexChanged += new System.EventHandler(this.applicationList_SelectedIndexChanged);
             // 
             // btnRemove
             // 
+            this.btnRemove.Enabled = false;
             this.btnRemove.Location = new System.Drawing.Point(101, 248);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(82, 44);
@@ -70,6 +72,7 @@
             // 
             // btnDownload
             // 
+            this.btnDownload.Enabled = false;
             this.btnDownload.Location = new System.Drawing.Point(823, 248);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(82, 44);
@@ -90,7 +93,8 @@
             // 
             // btnComment
             // 
-            this.btnComment.Location = new System.Drawing.Point(13, 248);
+            this.btnComment.Enabled = false;
+            this.btnComment.Location = new System.Drawing.Point(12, 248);
             this.btnComment.Name = "btnComment";
             this.btnComment.Size = new System.Drawing.Size(82, 44);
             this.btnComment.TabIndex = 5;
@@ -101,6 +105,7 @@
             // 
             // btnApprove
             // 
+            this.btnApprove.Enabled = false;
             this.btnApprove.Location = new System.Drawing.Point(101, 248);
             this.btnApprove.Name = "btnApprove";
             this.btnApprove.Size = new System.Drawing.Size(82, 44);
@@ -112,6 +117,7 @@
             // 
             // btnTag
             // 
+            this.btnTag.Enabled = false;
             this.btnTag.Location = new System.Drawing.Point(189, 248);
             this.btnTag.Name = "btnTag";
             this.btnTag.Size = new System.Drawing.Size(82, 44);
@@ -123,6 +129,7 @@
             // 
             // btnFinalize
             // 
+            this.btnFinalize.Enabled = false;
             this.btnFinalize.Location = new System.Drawing.Point(101, 248);
             this.btnFinalize.Name = "btnFinalize";
             this.btnFinalize.Size = new System.Drawing.Size(82, 44);

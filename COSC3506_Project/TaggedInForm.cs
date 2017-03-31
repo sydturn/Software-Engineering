@@ -35,7 +35,7 @@ namespace COSC3506_Project
 
         private void TaggedInForm_Closed(object sender, FormClosedEventArgs e)
         {
-            if (otherWindowOpen == false)
+            if (!otherWindowOpen)
                 Application.Exit();
         }
 
@@ -99,18 +99,11 @@ namespace COSC3506_Project
                 }
             }
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
         private void btnBack_OnClick(object sender, EventArgs e)
         {
-            MemberForm form = new MemberForm(dbConnection, securityStatus, memberId);
-            form.Show();
-            otherWindowOpen = true;
             this.Close();
         }
-        private void btnGo_OnClick(object sender, EventArgs e)
+        private void btnGo_Click(object sender, EventArgs e)
         {
             ApplicationForm applicationsForm = new ApplicationForm(dbConnection, Int32.Parse(tagsList.SelectedItems[0].Text), securityStatus, memberId);
             //perhaps we can pass the application id too so we can highlight it when we get there

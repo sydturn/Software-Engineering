@@ -57,6 +57,18 @@ namespace COSC3506_Project
             jobList.Columns.Add("Job Status", 150);
         }
 
+        private void jobList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (jobList.SelectedItems.Count > 0)
+            {
+                btnView.Enabled = true;
+            }
+            else
+            {
+                btnView.Enabled = false;
+            }
+        }
+
         public void RefreshJobList()
         {
             jobList.Items.Clear();
@@ -253,11 +265,6 @@ namespace COSC3506_Project
             }
             catch(Exception ex)
             { Console.WriteLine("Job not selected..."); }
-        }
-
-        private void jobList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnViewTags_onClick(object sender, EventArgs e)

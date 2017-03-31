@@ -59,6 +59,7 @@
             // 
             // btnView
             // 
+            this.btnView.Enabled = false;
             this.btnView.Location = new System.Drawing.Point(240, 185);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(108, 51);

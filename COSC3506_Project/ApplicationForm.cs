@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Net;
 using MySql.Data.MySqlClient;
 using System.IO;
+using System.Data.SqlClient;
 
 namespace COSC3506_Project
 {
@@ -233,28 +234,46 @@ namespace COSC3506_Project
 
         private void btnApprove_OnClick(object sender, EventArgs e)
         {
+         //   int numberOfRepeats;
             if (dbConnection.OpenConnection())
                 {
                     MySqlCommand command = new MySqlCommand();
+                 //   MySqlCommand query = new MySqlCommand("SELECT COUNT(application_id) as NumOfApprovals from app_passes where application_id = @application_id", dbConnection.getConnection());
                     appId = Int32.Parse(applicationList.SelectedItems[0].SubItems[1].Text);
+               //     query.Parameters.AddWithValue("@application_id", appId);
                     command.Connection = dbConnection.getConnection();
                     command.CommandText = "INSERT INTO app_passes (application_id, member_id) VALUES (@application_id, @member_id)";
                     command.Parameters.AddWithValue("@application_id", appId);
                     command.Parameters.AddWithValue("@member_id", memberId);
+
+                 //   MySqlDataReader rd = query.ExecuteReader();
                 try
                 {
+ /*                   if (rd.HasRows)
+                    {
+                        rd.Read(); // read first row
+                        numberOfRepeats = rd.GetInt32(0);
+                        Console.WriteLine(numberOfRepeats);
+                        if (numberOfRepeats >= 3)
+                        {
+                            MySqlCommand threeApproved = new MySqlCommand("UPDATE applications SET passOn = 'Yes' where application_id = @application_id", dbConnection.getConnection());
+                            threeApproved.Parameters.AddWithValue("@application_id", appId);
+                            threeApproved.ExecuteNonQuery();
+                        }
+                    }*/
                     command.ExecuteNonQuery();
                     MessageBox.Show("Application Approved!", "EARS System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                 //   dbConnection.CloseConnection();
-                    command.Dispose();
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("You cannot approve an application multiple times");
                 }
-                //RefreshApplicationList();
+                dbConnection.CloseConnection();
+                command.Dispose();
+                RefreshApplicationList();
+
            }
-            //ToDo:  
+            //ToDo:  figure out why the form keeps unpopulating
             //in the chair's application view, we will query the app_passes database to see if the application has three passes. If not, then it does not show up for the chair.
         }
 
@@ -283,6 +302,28 @@ namespace COSC3506_Project
             }
             MessageBox.Show("Application Approved!", "EARS System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close(); */
+        }
+
+        private void applicationList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (applicationList.SelectedItems.Count > 0)
+            {
+                btnComment.Enabled = true;
+                btnFinalize.Enabled = true;
+                btnApprove.Enabled = true;
+                btnRemove.Enabled = true;
+                btnTag.Enabled = true;
+                btnDownload.Enabled = true;
+            }
+            else
+            {
+                btnComment.Enabled = false;
+                btnFinalize.Enabled = false;
+                btnApprove.Enabled = false;
+                btnRemove.Enabled = false;
+                btnTag.Enabled = false;
+                btnDownload.Enabled = false;
+            }
         }
     }
 }
