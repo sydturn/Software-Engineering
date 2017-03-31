@@ -16,12 +16,18 @@ namespace COSC3506_Project
     public partial class CommentsForm : Form
     {
         private DBConnection dbConnection;
-        private string memberId;
-        private string appId;
+        private int memberId;
+        private int appId;
+        private int securityStatus;
+        private int jobId;
         private Boolean viewAppsForm = false;
 
-        public CommentsForm(DBConnection dbConnection)
+        public CommentsForm(DBConnection dbConnection, int jobId, int securityStatus, int memberId, int appId)
         {
+            this.memberId = memberId;
+            this.jobId = jobId;
+            this.appId = appId; 
+            this.securityStatus = securityStatus;
             this.dbConnection = dbConnection;
             InitializeComponent();
         }
@@ -37,17 +43,18 @@ namespace COSC3506_Project
             commentList.Columns.Add("Comment Text", 150);
         }
 
-        public void RefreshJobList()
+        public void RefreshCommentList()
         {
             commentList.Items.Clear();
 
-            if (dbConnection.OpenConnection())
+           if (dbConnection.OpenConnection())
             {
                 MySqlCommand command = new MySqlCommand();
-
+                
                 command.Connection = dbConnection.getConnection();
-                command.CommandText = "SELECT application_id, member_id, comment_text FROM comments";
-
+                command.CommandText = "SELECT application_id, member_id, comment_text FROM comments WHERE application_id = @app_id";
+                command.Parameters.AddWithValue("@app_id", appId);
+                
                 using (MySqlDataReader dr = command.ExecuteReader())
                 {
                     while (dr.Read())
@@ -64,21 +71,13 @@ namespace COSC3506_Project
 
                 dbConnection.CloseConnection();
                 command.Dispose();
-
-                foreach (ListViewItem li in commentList.Items)
-                {
-                    if (li.SubItems[2].Text == "Approved")
-                    {
-                        li.BackColor = Color.LightGreen;
-                    }
-                }
-            }
+           }
         }
 
         private void CommentsForm_Activated(object sender, EventArgs e)
         {
             Console.WriteLine("Form active, refreshing user list.");
-            RefreshJobList();
+            RefreshCommentList();
         }
 
         private void CommentsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -87,21 +86,19 @@ namespace COSC3506_Project
                 Application.Exit();
         }
 
-        private void btnAdd_OnClick(object sender, EventArgs e)
+        private void btnCreate_Click(object sender, EventArgs e)
         {
             createCommentsForm createComment = new createCommentsForm(dbConnection, memberId, appId);
             createComment.ShowDialog();
         }
 
-        private void btnBack_OnClick(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
-            SecretaryForm secretaryForm = new SecretaryForm(dbConnection);
-            secretaryForm.Show();
+            ApplicationForm form = new ApplicationForm(dbConnection, jobId, securityStatus, memberId);
+            form.Show();
             viewAppsForm = true;
             this.Close();
         }
-
-
     }
 }
 

@@ -73,16 +73,12 @@ namespace COSC3506_Project
                                     this.Close();
                                     break;
                                 case 2: // Secretary
-                                    SecretaryForm secretaryForm = new SecretaryForm(dbConnection);
-                                    secretaryForm.Show();
+                                case 3: // member
+                                case 4: // chair
+                                    MemberForm memberForm = new MemberForm(dbConnection, securityStatus, memberId);
+                                    memberForm.Show();
                                     signIn = true;
                                     this.Close();
-                                    break;
-                                case 3: // Committee
-                                    signIn = true;
-                                    break;
-                                case 4: // Chair
-                                    signIn = true;
                                     break;
                             }
                         }

@@ -16,12 +16,14 @@ namespace COSC3506_Project
     public partial class TaggedInForm : Form
     {
         private DBConnection dbConnection;
-        private Boolean openCommmitteeForm = false;
-        private String jobId; //somehow make this the job that they're tagged in
-        private String memberId; //make this the member logged in
+        private Boolean otherWindowOpen = false;
+        private int securityStatus;
+   
+        private int memberId; //make this the member logged in
 
-        public TaggedInForm(DBConnection dbConnection)
+        public TaggedInForm(DBConnection dbConnection, int securityStatus)
         {
+            this.securityStatus = securityStatus;
             this.dbConnection = dbConnection;
             InitializeComponent();
         }
@@ -33,7 +35,7 @@ namespace COSC3506_Project
 
         private void TaggedInForm_Closed(object sender, FormClosedEventArgs e)
         {
-            if (openCommmitteeForm == false)
+            if (otherWindowOpen == false)
                 Application.Exit();
         }
 
@@ -69,8 +71,7 @@ namespace COSC3506_Project
                 MySqlCommand command = new MySqlCommand();
 
                 command.Connection = dbConnection.getConnection();
-                command.CommandText = "SELECT job_id, application_id, tagee_id, approved FROM tags WHERE member_id = @member_id";
-                command.Parameters.AddWithValue("@job_id", jobId);
+                command.CommandText = "SELECT job_id, application_id, tagee_id FROM tags WHERE member_id = @member_id";
 
                 using (MySqlDataReader dr = command.ExecuteReader())
                 {
@@ -81,9 +82,6 @@ namespace COSC3506_Project
                         item.Text = dr[0].ToString();
                         item.SubItems.Add(dr[1].ToString());
                         item.SubItems.Add(dr[2].ToString());
-                        item.SubItems.Add(dr[3].ToString());
-                        item.SubItems.Add(dr[4].ToString());
-                        item.SubItems.Add(dr[5].ToString());
 
                         tagsList.Items.Add(item);
                     }
@@ -107,17 +105,17 @@ namespace COSC3506_Project
         }
         private void btnBack_OnClick(object sender, EventArgs e)
         {
-            CommitteeForm committeeForm = new CommitteeForm(dbConnection);
-            committeeForm.Show();
-            openCommmitteeForm = true;
+            MemberForm form = new MemberForm(dbConnection, securityStatus, memberId);
+            form.Show();
+            otherWindowOpen = true;
             this.Close();
         }
         private void btnGo_OnClick(object sender, EventArgs e)
         {
-            ViewApplicationForm applicationsForm = new ViewApplicationForm(dbConnection, jobId);
+            ApplicationForm applicationsForm = new ApplicationForm(dbConnection, Int32.Parse(tagsList.SelectedItems[0].Text), securityStatus, memberId);
             //perhaps we can pass the application id too so we can highlight it when we get there
             applicationsForm.Show();
-            openCommmitteeForm = true;
+            otherWindowOpen = true;
             this.Close();
         }
     }

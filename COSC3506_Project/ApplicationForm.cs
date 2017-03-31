@@ -13,33 +13,57 @@ using System.IO;
 
 namespace COSC3506_Project
 {
-    public partial class AddApplicationForm : Form
+    public partial class ApplicationForm : Form
     {
-
+        int appId;
         private DBConnection dbConnection;
-        private string jobId;
-        private Boolean openSecretaryForm = false;
+        private int jobId;
+        int securityStatus;
+        private int memberId;
+        private Boolean otherWindowOpen = false;
 
-        public AddApplicationForm(DBConnection dbConnection, string jobId)
+        public ApplicationForm(DBConnection dbConnection, int jobId, int securityStatus, int memberId)
         {
+            this.memberId = memberId;
             this.jobId = jobId;
             this.dbConnection = dbConnection;
+            this.securityStatus = securityStatus;
+
             InitializeComponent();
+
+            switch (securityStatus)
+            {
+                case 2: // Secretary
+                    btnAdd.Visible = true;
+                    btnRemove.Visible = true;
+                    break;
+
+                case 3: // Committee
+                    btnComment.Visible = true;
+                    btnTag.Visible = true;
+                    btnApprove.Visible = true;
+                    break;
+
+                case 4: // Chair
+                    btnComment.Visible = true;
+                    btnFinalize.Visible = true;
+                    break;
+            }
         }
 
-        private void AddApplicationForm_Activated(object sender, EventArgs e)
+        private void ApplicationForm_Activated(object sender, EventArgs e)
         {
             Console.WriteLine("Form active, refreshing user list.");
             RefreshApplicationList();
         }
 
-        private void AddApplicationForm_Closed(object sender, FormClosedEventArgs e)
+        private void ApplicationForm_Closed(object sender, FormClosedEventArgs e)
         {
-            if(openSecretaryForm == false)
+            if(otherWindowOpen == false)
                 Application.Exit();
         }
 
-        private void AddApplication_Load(object sender, EventArgs e)
+        private void Application_Load(object sender, EventArgs e)
         {
             applicationList.View = View.Details;
             applicationList.GridLines = true;
@@ -103,9 +127,9 @@ namespace COSC3506_Project
 
         private void btnBack_OnClick(object sender, EventArgs e)
         {
-            SecretaryForm secretaryForm = new SecretaryForm(dbConnection);
+            MemberForm secretaryForm = new MemberForm(dbConnection, securityStatus, memberId);
             secretaryForm.Show();
-            openSecretaryForm = true;
+            otherWindowOpen = true;
             this.Close();
         }
 
@@ -195,6 +219,70 @@ namespace COSC3506_Project
             catch
             { Console.WriteLine("No application selected..."); }
             
+        }
+
+        private void btnComment_OnClick(object sender, EventArgs e)
+        {
+            appId = Int32.Parse(applicationList.SelectedItems[0].SubItems[1].Text);
+            Console.WriteLine("APPID IS: " + appId);
+            CommentsForm form = new CommentsForm(dbConnection, jobId, securityStatus, memberId, appId);
+            form.Show();
+            otherWindowOpen = true;
+            this.Close();
+        }
+
+        private void btnApprove_OnClick(object sender, EventArgs e)
+        {
+            if (dbConnection.OpenConnection())
+                {
+                    MySqlCommand command = new MySqlCommand();
+                    appId = Int32.Parse(applicationList.SelectedItems[0].SubItems[1].Text);
+                    command.Connection = dbConnection.getConnection();
+                    command.CommandText = "INSERT INTO app_passes (application_id, member_id) VALUES (@application_id, @member_id)";
+                    command.Parameters.AddWithValue("@application_id", appId);
+                    command.Parameters.AddWithValue("@member_id", memberId);
+                try
+                {
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Application Approved!", "EARS System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                 //   dbConnection.CloseConnection();
+                    command.Dispose();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("You cannot approve an application multiple times");
+                }
+                //RefreshApplicationList();
+           }
+            //ToDo:  
+            //in the chair's application view, we will query the app_passes database to see if the application has three passes. If not, then it does not show up for the chair.
+        }
+
+        private void btnTag_OnClick(object sender, EventArgs e)
+        {
+            TaggedInForm taggedInForm = new TaggedInForm(dbConnection, securityStatus);
+            taggedInForm.Show();
+            otherWindowOpen = true;
+            this.Close();
+
+           /* if (dbConnection.OpenConnection())
+            {
+                MySqlCommand command = new MySqlCommand();
+
+                command.Connection = dbConnection.getConnection();
+                command.CommandText = "INSERT INTO tags (application_id, job_id, member_id, tagee_id, tag_id) VALUES (@application_id, @job_id, @tag_mem_id, @member_id, @tag_id)";
+                command.Parameters.AddWithValue("@application_id", appId);
+                command.Parameters.AddWithValue("@job_id", jobId);
+                command.Parameters.AddWithValue("@tag_mem_id", tagId);
+                command.Parameters.AddWithValue("@tagee_id", memberId);
+                command.Parameters.AddWithValue("@tag_id", appId); //should auto increment, not set up
+
+                command.ExecuteNonQuery();
+                dbConnection.CloseConnection();
+                command.Dispose();
+            }
+            MessageBox.Show("Application Approved!", "EARS System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close(); */
         }
     }
 }

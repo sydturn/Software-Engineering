@@ -50,6 +50,7 @@
             this.submitBtn.TabIndex = 7;
             this.submitBtn.Text = "Create";
             this.submitBtn.UseVisualStyleBackColor = true;
+            this.submitBtn.Click += new System.EventHandler(this.submitBtn_Click);
             // 
             // cancelBtn
             // 
@@ -59,6 +60,7 @@
             this.cancelBtn.TabIndex = 8;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // label1
             // 

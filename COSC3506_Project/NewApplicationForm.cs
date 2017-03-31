@@ -16,11 +16,11 @@ namespace COSC3506_Project
     public partial class NewApplicationForm : Form
     {
         private DBConnection dbConnection;
-        private string jobId;
+        private int jobId;
         private string filePath;
         private string fileName;
 
-        public NewApplicationForm(DBConnection dbConnection, string jobId)
+        public NewApplicationForm(DBConnection dbConnection, int jobId)
         {
             this.jobId = jobId;
             this.dbConnection = dbConnection;
