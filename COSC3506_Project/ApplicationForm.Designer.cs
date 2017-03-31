@@ -137,6 +137,7 @@
             this.btnFinalize.Text = "Finalize";
             this.btnFinalize.UseVisualStyleBackColor = true;
             this.btnFinalize.Visible = false;
+            this.btnFinalize.Click += new System.EventHandler(this.btnFinalize_Click);
             // 
             // ApplicationForm
             // 

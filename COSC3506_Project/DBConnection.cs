@@ -53,9 +53,9 @@ namespace COSC3506_Project
                 connection.Open();
                 return true;
             }
-            catch (MySqlException e)
-            {
-                switch (e.Number)
+            catch (Exception e)
+            { 
+                /*switch (e)
                 {
                     case 0:
                         Console.WriteLine("A connection to the database could not be established.");
@@ -63,7 +63,7 @@ namespace COSC3506_Project
                     case 1045:
                         Console.WriteLine("Invalid database credentials.");
                         break;
-                }
+                }*/
                 return false;
             }
         }

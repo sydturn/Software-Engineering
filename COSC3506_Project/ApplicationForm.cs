@@ -87,7 +87,14 @@ namespace COSC3506_Project
                 MySqlCommand command = new MySqlCommand();
 
                 command.Connection = dbConnection.getConnection();
-                command.CommandText = "SELECT job_id, application_id, name, phone, email, approved FROM applications WHERE job_id = @job_id";
+                if(securityStatus == 4)
+                {
+                    command.CommandText = "SELECT job_id, application_id, name, phone, email, approved FROM applications WHERE job_id = @job_id AND passOn = 'yes'";
+                }
+                else
+                {
+                    command.CommandText = "SELECT job_id, application_id, name, phone, email, approved FROM applications WHERE job_id = @job_id";
+                }
                 command.Parameters.AddWithValue("@job_id", jobId);
 
                 using (MySqlDataReader dr = command.ExecuteReader())
@@ -218,61 +225,85 @@ namespace COSC3506_Project
                 addJobForm.ShowDialog();
             }
             catch
-            { Console.WriteLine("No application selected..."); }
+            { MessageBox.Show("You must select an application"); }
             
         }
 
         private void btnComment_OnClick(object sender, EventArgs e)
         {
-            appId = Int32.Parse(applicationList.SelectedItems[0].SubItems[1].Text);
-            Console.WriteLine("APPID IS: " + appId);
-            CommentsForm form = new CommentsForm(dbConnection, jobId, securityStatus, memberId, appId);
-            form.Show();
-            otherWindowOpen = true;
-            this.Close();
+            try {
+                appId = Int32.Parse(applicationList.SelectedItems[0].SubItems[1].Text);
+                Console.WriteLine("APPID IS: " + appId);
+                CommentsForm form = new CommentsForm(dbConnection, jobId, securityStatus, memberId, appId);
+                form.Show();
+                otherWindowOpen = true;
+                this.Close();
+            }
+            catch (Exception) {
+                MessageBox.Show("You must select an application");
+            };
+
         }
 
         private void btnApprove_OnClick(object sender, EventArgs e)
         {
-         //   int numberOfRepeats;
-            if (dbConnection.OpenConnection())
+
+            try
+            {
+                appId = Int32.Parse(applicationList.SelectedItems[0].SubItems[1].Text);
+                int numberOfRepeats;
+                if (dbConnection.OpenConnection())
                 {
                     MySqlCommand command = new MySqlCommand();
-                 //   MySqlCommand query = new MySqlCommand("SELECT COUNT(application_id) as NumOfApprovals from app_passes where application_id = @application_id", dbConnection.getConnection());
-                    appId = Int32.Parse(applicationList.SelectedItems[0].SubItems[1].Text);
-               //     query.Parameters.AddWithValue("@application_id", appId);
                     command.Connection = dbConnection.getConnection();
                     command.CommandText = "INSERT INTO app_passes (application_id, member_id) VALUES (@application_id, @member_id)";
                     command.Parameters.AddWithValue("@application_id", appId);
                     command.Parameters.AddWithValue("@member_id", memberId);
-
-                 //   MySqlDataReader rd = query.ExecuteReader();
-                try
-                {
- /*                   if (rd.HasRows)
+                    
+                    try
                     {
-                        rd.Read(); // read first row
-                        numberOfRepeats = rd.GetInt32(0);
-                        Console.WriteLine(numberOfRepeats);
-                        if (numberOfRepeats >= 3)
-                        {
-                            MySqlCommand threeApproved = new MySqlCommand("UPDATE applications SET passOn = 'Yes' where application_id = @application_id", dbConnection.getConnection());
-                            threeApproved.Parameters.AddWithValue("@application_id", appId);
-                            threeApproved.ExecuteNonQuery();
-                        }
-                    }*/
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Application Approved!", "EARS System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("You cannot approve an application multiple times");
-                }
-                dbConnection.CloseConnection();
-                command.Dispose();
-                RefreshApplicationList();
+                        command.ExecuteNonQuery();
+                        command.Dispose();
+                        MessageBox.Show("Application Approved!", "EARS System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-           }
+                        MySqlCommand query = new MySqlCommand("SELECT COUNT(application_id) as NumOfApprovals from app_passes where application_id = @application_id", dbConnection.getConnection());
+                        query.Parameters.AddWithValue("@application_id", appId);
+                        MySqlDataReader rd = query.ExecuteReader();
+                        if (rd.HasRows)
+                            {
+                                rd.Read(); // read first row
+                                numberOfRepeats = rd.GetInt32(0);
+                                query.Dispose();
+                                rd.Dispose();
+                                Console.WriteLine(numberOfRepeats);
+                                if (numberOfRepeats >= 3)
+                                {
+                                    MySqlCommand threeApproved = new MySqlCommand();
+                                    threeApproved.Connection = dbConnection.getConnection();
+                                    threeApproved.CommandText = "UPDATE applications SET passOn = 'Yes' where application_id = @application_id";
+                                    threeApproved.Parameters.AddWithValue("@application_id", appId);
+                                    threeApproved.ExecuteNonQuery();
+                                    threeApproved.Dispose();
+                                dbConnection.CloseConnection();
+                                RefreshApplicationList();
+                            }
+                            }
+                        
+                    }
+                    catch (Exception)
+                    {
+                         MessageBox.Show("You cannot approve an application multiple times");
+                        Console.WriteLine("HELLO IM HERE!");
+                        dbConnection.CloseConnection();
+                         RefreshApplicationList();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("You must select an application");
+            };
+
             //ToDo:  figure out why the form keeps unpopulating
             //in the chair's application view, we will query the app_passes database to see if the application has three passes. If not, then it does not show up for the chair.
         }
@@ -324,6 +355,29 @@ namespace COSC3506_Project
                 btnTag.Enabled = false;
                 btnDownload.Enabled = false;
             }
+        }
+
+        private void btnFinalize_Click(object sender, EventArgs e)
+        {
+            try {
+                appId = Int32.Parse(applicationList.SelectedItems[0].SubItems[1].Text);
+                if (dbConnection.OpenConnection())
+                {
+                    MySqlCommand command = new MySqlCommand();
+                    command.Connection = dbConnection.getConnection();
+                    command.CommandText = "UPDATE applications SET approved = 'Yes' where application_id = @application_id"; ;
+                    command.Parameters.AddWithValue("@application_id", appId);
+                    command.ExecuteNonQuery();
+                    command.Dispose();
+                    MessageBox.Show("Application Finalized!", "EARS System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("You cannot approve an application multiple times");
+            }
+            dbConnection.CloseConnection();
+            RefreshApplicationList();
         }
     }
 }
