@@ -111,6 +111,10 @@ namespace COSC3506_Project
                 {
                     command.CommandText = "SELECT job_id, application_id, name, phone, email, approved FROM applications WHERE job_id = @job_id AND passOn is NULL";
                 }
+                else
+                {
+                    command.CommandText = "SELECT job_id, application_id, name, phone, email, approved FROM applications WHERE job_id = @job_id";
+                }
                 command.Parameters.AddWithValue("@job_id", jobId);
 
                 using (MySqlDataReader dr = command.ExecuteReader())

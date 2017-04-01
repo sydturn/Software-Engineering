@@ -77,15 +77,15 @@ namespace COSC3506_Project
                 string email = emailBox.Text;
 
                 if (name == null || phone == null || email == null || filePath == null)
+                {
                     throw new Exception();
-
+                }
                 string fileFolder = "";
                 if (dbConnection.OpenConnection())
                 {
                     MySqlCommand command = new MySqlCommand();
-
                     command.Connection = dbConnection.getConnection();
-                    command.CommandText = "SELECT job_path FROM dropboxes WHERE job_id = @job_id";
+                    command.CommandText = "SELECT job_path FROM dropboxes WHERE job_id = @job_id";              
                     command.Parameters.AddWithValue("@job_id", jobId);
 
                     using (MySqlDataReader dr = command.ExecuteReader())
@@ -104,6 +104,7 @@ namespace COSC3506_Project
                 }
 
                 string newApplication = fileFolder + "/" + fileName;
+
                 WebRequest request = WebRequest.Create(newApplication);
                 request.Method = WebRequestMethods.Ftp.UploadFile;
                 request.Credentials = new NetworkCredential("ftpuser", "pickleparty");
@@ -123,6 +124,7 @@ namespace COSC3506_Project
                     command.Connection = dbConnection.getConnection();
                     command.CommandText = "INSERT INTO applications (job_id, name, phone, email, app_path, approved) VALUES (@job_id, @name, @phone, @email, @app_path, @approved)";
                     command.Parameters.AddWithValue("@job_id", jobId);
+                    Console.WriteLine("JOB ID" + jobId);
                     command.Parameters.AddWithValue("@name", name);
                     command.Parameters.AddWithValue("@phone", phone);
                     command.Parameters.AddWithValue("@email", email);
@@ -136,8 +138,11 @@ namespace COSC3506_Project
                 MessageBox.Show("Application successfully created!", "EARS System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
-            catch
-            { Console.WriteLine("All fields must be complete..."); }
+            catch (Exception x)
+            {
+                Console.WriteLine("All fields must be complete...");
+                Console.WriteLine(x);
+            }
         }
     }
 }

@@ -50,11 +50,15 @@ namespace COSC3506_Project
         {
             try
             {
-                connection.Open();
+                if (connection.State == System.Data.ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
                 return true;
             }
             catch (Exception e)
-            { 
+            {
+                Console.WriteLine("OpenConnection: " + e);
                 /*switch (e)
                 {
                     case 0:
