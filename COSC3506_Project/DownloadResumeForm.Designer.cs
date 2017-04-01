@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DownloadResumeForm));
             this.btnSelect = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnDownload = new System.Windows.Forms.Button();
@@ -82,8 +83,9 @@
             this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSelect);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DownloadResumeForm";
-            this.Text = "DownloadResumeForm";
+            this.Text = "Download Application";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -131,11 +131,12 @@ namespace COSC3506_Project
                 else
                     available = 0;
 
-                command.CommandText = "UPDATE member_info SET f_name = @firstName, l_name = @lastName, available = @available WHERE member_id = @id";
+                command.CommandText = "UPDATE member_info SET f_name = @firstName, l_name = @lastName, available = @available, position = @position WHERE member_id = @id";
 
                 command.Parameters.AddWithValue("@firstName", txtFirstName.Text);
                 command.Parameters.AddWithValue("@lastName", txtLastName.Text);
                 command.Parameters.AddWithValue("@available", available);
+                command.Parameters.AddWithValue("@position", securityComboBox.Text);
 
                 command.ExecuteNonQuery();
 

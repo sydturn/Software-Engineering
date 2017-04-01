@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ApplicationForm));
             this.btnAdd = new System.Windows.Forms.Button();
             this.applicationList = new System.Windows.Forms.ListView();
             this.btnRemove = new System.Windows.Forms.Button();
@@ -153,8 +154,9 @@
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.applicationList);
             this.Controls.Add(this.btnAdd);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ApplicationForm";
-            this.Text = "AddApplicationForm";
+            this.Text = "EARS - Application List";
             this.Activated += new System.EventHandler(this.ApplicationForm_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ApplicationForm_Closed);
             this.Load += new System.EventHandler(this.Application_Load);

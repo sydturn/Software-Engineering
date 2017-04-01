@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(createCommentsForm));
             this.commentBox = new System.Windows.Forms.TextBox();
             this.submitBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
@@ -39,7 +40,7 @@
             this.commentBox.Location = new System.Drawing.Point(12, 36);
             this.commentBox.Multiline = true;
             this.commentBox.Name = "commentBox";
-            this.commentBox.Size = new System.Drawing.Size(192, 65);
+            this.commentBox.Size = new System.Drawing.Size(230, 65);
             this.commentBox.TabIndex = 2;
             // 
             // submitBtn
@@ -54,7 +55,7 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(156, 107);
+            this.cancelBtn.Location = new System.Drawing.Point(194, 107);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(48, 23);
             this.cancelBtn.TabIndex = 8;
@@ -75,13 +76,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(218, 142);
+            this.ClientSize = new System.Drawing.Size(254, 142);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.submitBtn);
             this.Controls.Add(this.commentBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "createCommentsForm";
-            this.Text = "createCommentsForm";
+            this.Text = "EARS - New Comment";
             this.ResumeLayout(false);
             this.PerformLayout();
 

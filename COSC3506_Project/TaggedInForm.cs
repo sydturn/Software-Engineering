@@ -19,10 +19,11 @@ namespace COSC3506_Project
         private Boolean otherWindowOpen = false;
         private int securityStatus;
    
-        private int memberId; //make this the member logged in
+        private int memberId; 
 
-        public TaggedInForm(DBConnection dbConnection, int securityStatus)
+        public TaggedInForm(DBConnection dbConnection, int securityStatus, int memberId)
         {
+            this.memberId = memberId;
             this.securityStatus = securityStatus;
             this.dbConnection = dbConnection;
             InitializeComponent();
@@ -30,7 +31,7 @@ namespace COSC3506_Project
         private void TaggedInForm_Activated(object sender, EventArgs e)
         {
             Console.WriteLine("Form active, refreshing user list.");
-            RefreshApplicationList();
+            RefreshTagsList();
         }
 
         private void TaggedInForm_Closed(object sender, FormClosedEventArgs e)
@@ -50,8 +51,7 @@ namespace COSC3506_Project
                 btnGo.Enabled = false;
             }
         }
-
-        private void tagsList_Load(object sender, EventArgs e)
+        private void TaggedInForm_Load(object sender, EventArgs e)
         {
             tagsList.View = View.Details;
             tagsList.GridLines = true;
@@ -61,8 +61,7 @@ namespace COSC3506_Project
             tagsList.Columns.Add("Application ID", 150);
             tagsList.Columns.Add("Tagee", 150);
         }
-
-        public void RefreshApplicationList()
+        public void RefreshTagsList()
         {
             tagsList.Items.Clear();
 
@@ -71,7 +70,8 @@ namespace COSC3506_Project
                 MySqlCommand command = new MySqlCommand();
 
                 command.Connection = dbConnection.getConnection();
-                command.CommandText = "SELECT job_id, application_id, tagee_id FROM tags WHERE member_id = @member_id";
+                command.CommandText = "SELECT job_id, app_id, tagee_id FROM app_tags WHERE member_id = @member_id";
+                command.Parameters.AddWithValue("@member_id", memberId);
 
                 using (MySqlDataReader dr = command.ExecuteReader())
                 {
@@ -89,27 +89,24 @@ namespace COSC3506_Project
 
                 dbConnection.CloseConnection();
                 command.Dispose();
-
-                foreach (ListViewItem li in tagsList.Items)
-                {
-                    if (li.SubItems[5].Text == "Yes")
-                    {
-                        li.BackColor = Color.LightGreen;
-                    }
-                }
             }
         }
         private void btnBack_OnClick(object sender, EventArgs e)
         {
+            otherWindowOpen = true; 
             this.Close();
         }
         private void btnGo_Click(object sender, EventArgs e)
         {
-            ApplicationForm applicationsForm = new ApplicationForm(dbConnection, Int32.Parse(tagsList.SelectedItems[0].Text), securityStatus, memberId);
-            //perhaps we can pass the application id too so we can highlight it when we get there
+            ApplicationForm applicationsForm = new ApplicationForm(dbConnection, Int32.Parse(tagsList.SelectedItems[0].SubItems[0].Text), securityStatus, memberId, Int32.Parse(tagsList.SelectedItems[0].SubItems[1].Text));
             applicationsForm.Show();
             otherWindowOpen = true;
             this.Close();
+        }
+
+        private void lblUserList_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

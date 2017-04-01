@@ -17,6 +17,8 @@ namespace COSC3506_Project
     public partial class ApplicationForm : Form
     {
         int appId;
+        int sentApp;
+        bool navFromTag = false;
         private DBConnection dbConnection;
         private int jobId;
         int securityStatus;
@@ -51,6 +53,18 @@ namespace COSC3506_Project
                     break;
             }
         }
+        public ApplicationForm(DBConnection dbConnection, int jobId, int securityStatus, int memberId, int appID)
+        {
+            this.securityStatus = securityStatus;
+            this.jobId = jobId;
+            this.dbConnection = dbConnection;
+            this.memberId = memberId;
+            sentApp = appID;
+            InitializeComponent();
+            btnComment.Visible = true;
+            btnTag.Visible = true;
+            btnApprove.Visible = true;
+        }
 
         private void ApplicationForm_Activated(object sender, EventArgs e)
         {
@@ -60,8 +74,10 @@ namespace COSC3506_Project
 
         private void ApplicationForm_Closed(object sender, FormClosedEventArgs e)
         {
-            if(otherWindowOpen == false)
+            if (!otherWindowOpen)
+            {
                 Application.Exit();
+            }
         }
 
         private void Application_Load(object sender, EventArgs e)
@@ -91,9 +107,9 @@ namespace COSC3506_Project
                 {
                     command.CommandText = "SELECT job_id, application_id, name, phone, email, approved FROM applications WHERE job_id = @job_id AND passOn = 'yes'";
                 }
-                else
+                else if (securityStatus == 3)
                 {
-                    command.CommandText = "SELECT job_id, application_id, name, phone, email, approved FROM applications WHERE job_id = @job_id";
+                    command.CommandText = "SELECT job_id, application_id, name, phone, email, approved FROM applications WHERE job_id = @job_id AND passOn is NULL";
                 }
                 command.Parameters.AddWithValue("@job_id", jobId);
 
@@ -124,6 +140,13 @@ namespace COSC3506_Project
                         li.BackColor = Color.LightGreen;
                     }
                 }
+                foreach (ListViewItem li in applicationList.Items)
+                {
+                    if ((Int32.Parse(li.SubItems[1].Text)) == sentApp)
+                    {
+                        li.BackColor = Color.LightBlue;
+                    }
+                }
             }
         }
 
@@ -135,8 +158,15 @@ namespace COSC3506_Project
 
         private void btnBack_OnClick(object sender, EventArgs e)
         {
-            MemberForm secretaryForm = new MemberForm(dbConnection, securityStatus, memberId);
-            secretaryForm.Show();
+            if (navFromTag)
+            {
+                TaggedInForm taggedInForm = new TaggedInForm(dbConnection, securityStatus, memberId);
+            }
+            else
+            {
+                MemberForm secretaryForm = new MemberForm(dbConnection, securityStatus, memberId);
+                secretaryForm.Show();
+            }
             otherWindowOpen = true;
             this.Close();
         }
@@ -233,7 +263,6 @@ namespace COSC3506_Project
         {
             try {
                 appId = Int32.Parse(applicationList.SelectedItems[0].SubItems[1].Text);
-                Console.WriteLine("APPID IS: " + appId);
                 CommentsForm form = new CommentsForm(dbConnection, jobId, securityStatus, memberId, appId);
                 form.Show();
                 otherWindowOpen = true;
@@ -284,11 +313,10 @@ namespace COSC3506_Project
                                     threeApproved.Parameters.AddWithValue("@application_id", appId);
                                     threeApproved.ExecuteNonQuery();
                                     threeApproved.Dispose();
-                                dbConnection.CloseConnection();
-                                RefreshApplicationList();
                             }
                             }
-                        
+                        dbConnection.CloseConnection();
+                        RefreshApplicationList();
                     }
                     catch (Exception)
                     {
@@ -303,36 +331,22 @@ namespace COSC3506_Project
             {
                 MessageBox.Show("You must select an application");
             };
-
-            //ToDo:  figure out why the form keeps unpopulating
-            //in the chair's application view, we will query the app_passes database to see if the application has three passes. If not, then it does not show up for the chair.
         }
 
         private void btnTag_OnClick(object sender, EventArgs e)
         {
-            TaggedInForm taggedInForm = new TaggedInForm(dbConnection, securityStatus);
-            taggedInForm.Show();
-            otherWindowOpen = true;
-            this.Close();
-
-           /* if (dbConnection.OpenConnection())
+            try
             {
-                MySqlCommand command = new MySqlCommand();
+                appId = Int32.Parse(applicationList.SelectedItems[0].SubItems[1].Text);
+                TagPersonForm tagPersonForm = new TagPersonForm(dbConnection, jobId, appId, memberId, securityStatus);
+                tagPersonForm.Show();
+                otherWindowOpen = true;
 
-                command.Connection = dbConnection.getConnection();
-                command.CommandText = "INSERT INTO tags (application_id, job_id, member_id, tagee_id, tag_id) VALUES (@application_id, @job_id, @tag_mem_id, @member_id, @tag_id)";
-                command.Parameters.AddWithValue("@application_id", appId);
-                command.Parameters.AddWithValue("@job_id", jobId);
-                command.Parameters.AddWithValue("@tag_mem_id", tagId);
-                command.Parameters.AddWithValue("@tagee_id", memberId);
-                command.Parameters.AddWithValue("@tag_id", appId); //should auto increment, not set up
-
-                command.ExecuteNonQuery();
-                dbConnection.CloseConnection();
-                command.Dispose();
             }
-            MessageBox.Show("Application Approved!", "EARS System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Close(); */
+            catch
+            {
+                MessageBox.Show("Please select an application");
+            }
         }
 
         private void applicationList_SelectedIndexChanged(object sender, EventArgs e)

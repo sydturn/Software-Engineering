@@ -100,7 +100,7 @@ namespace COSC3506_Project
             // TODO: Store/remove the username value in configurationn if not already.
         }
 
-        private void SignInForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void SignInForm_Closed(object sender, FormClosedEventArgs e)
         {
             if (!signIn)
                 Application.Exit();

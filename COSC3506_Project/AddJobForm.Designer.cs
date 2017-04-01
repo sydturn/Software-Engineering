@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddJobForm));
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnFinish = new System.Windows.Forms.Button();
             this.jobText = new System.Windows.Forms.TextBox();
@@ -79,8 +80,9 @@
             this.Controls.Add(this.jobText);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.btnCancel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddJobForm";
-            this.Text = "AddJobForm";
+            this.Text = "EARS - New Job Posting";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CommentsForm));
             this.btnBack = new System.Windows.Forms.Button();
             this.commentList = new System.Windows.Forms.ListView();
             this.btnCreate = new System.Windows.Forms.Button();
@@ -69,8 +70,9 @@
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.commentList);
             this.Controls.Add(this.btnBack);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CommentsForm";
-            this.Text = "CommentsForm";
+            this.Text = "EARS - Comments for this Application";
             this.Activated += new System.EventHandler(this.CommentsForm_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CommentsForm_FormClosed);
             this.Load += new System.EventHandler(this.CommentsForm_Load);

@@ -20,7 +20,7 @@ namespace COSC3506_Project
         private int appId;
         private int securityStatus;
         private int jobId;
-        private Boolean viewAppsForm = false;
+        private Boolean otherWindowOpen = false;
 
         public CommentsForm(DBConnection dbConnection, int jobId, int securityStatus, int memberId, int appId)
         {
@@ -40,7 +40,7 @@ namespace COSC3506_Project
 
             commentList.Columns.Add("Application", 150);
             commentList.Columns.Add("Commenter", 150);
-            commentList.Columns.Add("Comment Text", 150);
+            commentList.Columns.Add("Comment Text", 250);
         }
 
         public void RefreshCommentList()
@@ -82,7 +82,7 @@ namespace COSC3506_Project
 
         private void CommentsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (viewAppsForm == false)
+            if (otherWindowOpen == false)
                 Application.Exit();
         }
 
@@ -96,7 +96,7 @@ namespace COSC3506_Project
         {
             ApplicationForm form = new ApplicationForm(dbConnection, jobId, securityStatus, memberId);
             form.Show();
-            viewAppsForm = true;
+            otherWindowOpen = true;
             this.Close();
         }
     }

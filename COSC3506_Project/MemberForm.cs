@@ -16,7 +16,7 @@ namespace COSC3506_Project
     public partial class MemberForm : Form
     {
         private DBConnection dbConnection;
-        private Boolean openAddApp = false;
+        private Boolean otherWindowOpen = false;
         private int securityStatus;
         private int memberId;
 
@@ -115,7 +115,7 @@ namespace COSC3506_Project
 
         private void MemberForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (!openAddApp)
+            if (!otherWindowOpen)
             {
                 Application.Exit();
             }
@@ -260,7 +260,7 @@ namespace COSC3506_Project
                 int jobId = Int32.Parse(jobList.SelectedItems[0].Text);
                 ApplicationForm addApplicationForm = new ApplicationForm(dbConnection, jobId, securityStatus, memberId);
                 addApplicationForm.Show();
-                openAddApp = true;
+                otherWindowOpen = true;
                 this.Close();
             }
             catch(Exception ex)
@@ -269,8 +269,18 @@ namespace COSC3506_Project
 
         private void btnViewTags_onClick(object sender, EventArgs e)
         {
-            TaggedInForm form = new TaggedInForm(dbConnection, securityStatus);
+            TaggedInForm form = new TaggedInForm(dbConnection, securityStatus, memberId);
             form.Show();
+            otherWindowOpen = true;
+            this.Close();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            SignInForm form = new SignInForm(dbConnection);
+            form.Show();
+            otherWindowOpen = true;
+            this.Close();
         }
     }
 }

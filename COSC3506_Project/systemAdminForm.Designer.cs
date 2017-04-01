@@ -35,6 +35,7 @@
             this.btnChangePassword = new System.Windows.Forms.Button();
             this.usersListView = new System.Windows.Forms.ListView();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblUserList
@@ -51,7 +52,7 @@
             // 
             this.btnModifyUser.Enabled = false;
             this.btnModifyUser.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModifyUser.Location = new System.Drawing.Point(194, 247);
+            this.btnModifyUser.Location = new System.Drawing.Point(95, 254);
             this.btnModifyUser.Name = "btnModifyUser";
             this.btnModifyUser.Size = new System.Drawing.Size(74, 31);
             this.btnModifyUser.TabIndex = 2;
@@ -63,7 +64,7 @@
             // 
             this.btnDeleteUser.Enabled = false;
             this.btnDeleteUser.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteUser.Location = new System.Drawing.Point(274, 247);
+            this.btnDeleteUser.Location = new System.Drawing.Point(175, 254);
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(74, 31);
             this.btnDeleteUser.TabIndex = 3;
@@ -75,7 +76,7 @@
             // 
             this.btnChangePassword.Enabled = false;
             this.btnChangePassword.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangePassword.Location = new System.Drawing.Point(354, 247);
+            this.btnChangePassword.Location = new System.Drawing.Point(255, 254);
             this.btnChangePassword.Name = "btnChangePassword";
             this.btnChangePassword.Size = new System.Drawing.Size(119, 31);
             this.btnChangePassword.TabIndex = 4;
@@ -86,9 +87,9 @@
             // usersListView
             // 
             this.usersListView.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usersListView.Location = new System.Drawing.Point(15, 49);
+            this.usersListView.Location = new System.Drawing.Point(15, 38);
             this.usersListView.Name = "usersListView";
-            this.usersListView.Size = new System.Drawing.Size(458, 183);
+            this.usersListView.Size = new System.Drawing.Size(609, 210);
             this.usersListView.TabIndex = 5;
             this.usersListView.UseCompatibleStateImageBehavior = false;
             this.usersListView.SelectedIndexChanged += new System.EventHandler(this.usersListView_SelectedIndexChanged);
@@ -96,7 +97,7 @@
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(114, 247);
+            this.btnAdd.Location = new System.Drawing.Point(15, 254);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(74, 31);
             this.btnAdd.TabIndex = 6;
@@ -104,11 +105,23 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnLogout
+            // 
+            this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.Location = new System.Drawing.Point(550, 254);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(74, 31);
+            this.btnLogout.TabIndex = 7;
+            this.btnLogout.Text = "Log Out";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // SystemAdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 297);
+            this.ClientSize = new System.Drawing.Size(636, 297);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.usersListView);
             this.Controls.Add(this.btnChangePassword);
@@ -136,5 +149,6 @@
         private System.Windows.Forms.Button btnChangePassword;
         private System.Windows.Forms.ListView usersListView;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnLogout;
     }
 }

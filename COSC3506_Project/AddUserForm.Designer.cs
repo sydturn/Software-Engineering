@@ -182,7 +182,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddUserForm";
-            this.Text = "Add User";
+            this.Text = "EARS - Add User";
             this.Load += new System.EventHandler(this.AddUserForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
