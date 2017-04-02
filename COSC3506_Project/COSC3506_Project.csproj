@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,11 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddApplicationForm.cs">
+    <Compile Include="ApplicationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddApplicationForm.Designer.cs">
-      <DependentUpon>AddApplicationForm.cs</DependentUpon>
+    <Compile Include="ApplicationForm.Designer.cs">
+      <DependentUpon>ApplicationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AddJobForm.cs">
       <SubType>Form</SubType>
@@ -60,17 +61,17 @@
     <Compile Include="AddJobForm.Designer.cs">
       <DependentUpon>AddJobForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChairForm.cs">
+    <Compile Include="CommentsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChairForm.Designer.cs">
-      <DependentUpon>ChairForm.cs</DependentUpon>
+    <Compile Include="CommentsForm.Designer.cs">
+      <DependentUpon>CommentsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CommitteeForm.cs">
+    <Compile Include="createCommentsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CommitteeForm.Designer.cs">
-      <DependentUpon>CommitteeForm.cs</DependentUpon>
+    <Compile Include="createCommentsForm.Designer.cs">
+      <DependentUpon>createCommentsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DBConnection.cs" />
     <Compile Include="AddUserForm.cs">
@@ -103,11 +104,11 @@
     <Compile Include="PasswordResetForm.Designer.cs">
       <DependentUpon>PasswordResetForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SecretaryForm.cs">
+    <Compile Include="MemberForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SecretaryForm.Designer.cs">
-      <DependentUpon>SecretaryForm.cs</DependentUpon>
+    <Compile Include="MemberForm.Designer.cs">
+      <DependentUpon>MemberForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SignInForm.cs">
       <SubType>Form</SubType>
@@ -123,14 +124,20 @@
     <Compile Include="SystemAdminForm.Designer.cs">
       <DependentUpon>SystemAdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewApplicationsForm.cs">
+    <Compile Include="TaggedInForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewApplicationsForm.Designer.cs">
-      <DependentUpon>ViewApplicationsForm.cs</DependentUpon>
+    <Compile Include="TaggedInForm.Designer.cs">
+      <DependentUpon>TaggedInForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddApplicationForm.resx">
-      <DependentUpon>AddApplicationForm.cs</DependentUpon>
+    <Compile Include="TagPersonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TagPersonForm.Designer.cs">
+      <DependentUpon>TagPersonForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ApplicationForm.resx">
+      <DependentUpon>ApplicationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddJobForm.resx">
       <DependentUpon>AddJobForm.cs</DependentUpon>
@@ -138,14 +145,17 @@
     <EmbeddedResource Include="AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChairForm.resx">
-      <DependentUpon>ChairForm.cs</DependentUpon>
+    <EmbeddedResource Include="CommentsForm.resx">
+      <DependentUpon>CommentsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CommitteeForm.resx">
-      <DependentUpon>CommitteeForm.cs</DependentUpon>
+    <EmbeddedResource Include="createCommentsForm.resx">
+      <DependentUpon>createCommentsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DownloadResumeForm.resx">
       <DependentUpon>DownloadResumeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyUserForm.resx">
+      <DependentUpon>ModifyUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewApplicationForm.resx">
       <DependentUpon>NewApplicationForm.cs</DependentUpon>
@@ -153,8 +163,8 @@
     <EmbeddedResource Include="PasswordResetForm.resx">
       <DependentUpon>PasswordResetForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SecretaryForm.resx">
-      <DependentUpon>SecretaryForm.cs</DependentUpon>
+    <EmbeddedResource Include="MemberForm.resx">
+      <DependentUpon>MemberForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SignInForm.resx">
       <DependentUpon>SignInForm.cs</DependentUpon>
@@ -171,8 +181,11 @@
     <EmbeddedResource Include="SystemAdminForm.resx">
       <DependentUpon>SystemAdminForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewApplicationsForm.resx">
-      <DependentUpon>ViewApplicationsForm.cs</DependentUpon>
+    <EmbeddedResource Include="TaggedInForm.resx">
+      <DependentUpon>TaggedInForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TagPersonForm.resx">
+      <DependentUpon>TagPersonForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

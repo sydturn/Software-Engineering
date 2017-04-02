@@ -15,6 +15,7 @@ namespace COSC3506_Project
     public partial class SystemAdminForm : Form
     {
         private DBConnection dbConnection;
+        private Boolean otherWindowOpen = false;
 
         public SystemAdminForm(DBConnection dbConnection)
         {
@@ -31,6 +32,7 @@ namespace COSC3506_Project
             usersListView.Columns.Add("Member ID", 150);
             usersListView.Columns.Add("First Name", 150);
             usersListView.Columns.Add("Last Name", 150);
+            usersListView.Columns.Add("Position", 150);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -48,7 +50,7 @@ namespace COSC3506_Project
                 MySqlCommand command = new MySqlCommand();
 
                 command.Connection = dbConnection.getConnection();
-                command.CommandText = "SELECT member_id, f_name, l_name FROM member_info";
+                command.CommandText = "SELECT member_id, f_name, l_name, position FROM member_info";
 
                 using (MySqlDataReader dr = command.ExecuteReader())
                 {
@@ -59,6 +61,7 @@ namespace COSC3506_Project
                         item.Text = dr[0].ToString();
                         item.SubItems.Add(dr[1].ToString());
                         item.SubItems.Add(dr[2].ToString());
+                        item.SubItems.Add(dr[3].ToString());
 
                         usersListView.Items.Add(item);
                     }
@@ -71,7 +74,10 @@ namespace COSC3506_Project
 
         private void SystemAdminForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            if (!otherWindowOpen)
+            {
+                Application.Exit();
+            }
         }
 
         private void usersListView_SelectedIndexChanged(object sender, EventArgs e)
@@ -157,6 +163,14 @@ namespace COSC3506_Project
             btnDeleteUser.Enabled = false;
             btnModifyUser.Enabled = false;
             btnChangePassword.Enabled = false;
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            SignInForm form = new SignInForm(dbConnection);
+            form.Show();
+            otherWindowOpen = true;
+            this.Close();
         }
     }
 }

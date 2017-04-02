@@ -13,18 +13,40 @@ using System.IO;
 
 namespace COSC3506_Project
 {
-    public partial class SecretaryForm : Form
+    public partial class MemberForm : Form
     {
         private DBConnection dbConnection;
-        private Boolean openAddApp = false;
+        private Boolean otherWindowOpen = false;
+        private int securityStatus;
+        private int memberId;
 
-        public SecretaryForm(DBConnection dbConnection)
+        public MemberForm(DBConnection dbConnection, int securityStatus, int memberId)
         {
             this.dbConnection = dbConnection;
+            this.securityStatus = securityStatus;
+            this.memberId = memberId;
             InitializeComponent();
+
+            switch (securityStatus)
+            {
+                case 2: // Secretary
+                    btnAdd.Visible = true;
+                    btnRemove.Visible = true;
+                    btnView.Visible = true;
+                    break;
+
+                case 3: // Committee
+                    btnViewTags.Visible = true;
+                    btnView.Visible = true;
+                    break;
+
+                case 4: // Chair
+                    btnView.Visible = true;
+                    break;
+            }
         }
 
-        private void SecretaryForm_Load(object sender, EventArgs e)
+        private void MemberForm_Load(object sender, EventArgs e)
         {
             jobList.View = View.Details;
             jobList.GridLines = true;
@@ -33,6 +55,18 @@ namespace COSC3506_Project
             jobList.Columns.Add("Job ID", 150);
             jobList.Columns.Add("Job Title", 150);
             jobList.Columns.Add("Job Status", 150);
+        }
+
+        private void jobList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (jobList.SelectedItems.Count > 0)
+            {
+                btnView.Enabled = true;
+            }
+            else
+            {
+                btnView.Enabled = false;
+            }
         }
 
         public void RefreshJobList()
@@ -73,16 +107,18 @@ namespace COSC3506_Project
             }
         }
 
-        private void SecretaryForm_Activated(object sender, EventArgs e)
+        private void MemberForm_Activated(object sender, EventArgs e)
         {
             Console.WriteLine("Form active, refreshing user list.");
             RefreshJobList();
         }
 
-        private void SecretaryForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void MemberForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if(openAddApp == false)
+            if (!otherWindowOpen)
+            {
                 Application.Exit();
+            }
         }
 
         private void btnAdd_OnClick(object sender, EventArgs e)
@@ -221,19 +257,30 @@ namespace COSC3506_Project
         {
             try
             {
-                string jobId = jobList.SelectedItems[0].Text;
-                AddApplicationForm addApplicationForm = new AddApplicationForm(dbConnection, jobId);
+                int jobId = Int32.Parse(jobList.SelectedItems[0].Text);
+                ApplicationForm addApplicationForm = new ApplicationForm(dbConnection, jobId, securityStatus, memberId);
                 addApplicationForm.Show();
-                openAddApp = true;
+                otherWindowOpen = true;
                 this.Close();
             }
             catch(Exception ex)
             { Console.WriteLine("Job not selected..."); }
         }
 
-        private void jobList_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnViewTags_onClick(object sender, EventArgs e)
         {
+            TaggedInForm form = new TaggedInForm(dbConnection, securityStatus, memberId);
+            form.Show();
+            otherWindowOpen = true;
+            this.Close();
+        }
 
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            SignInForm form = new SignInForm(dbConnection);
+            form.Show();
+            otherWindowOpen = true;
+            this.Close();
         }
     }
 }

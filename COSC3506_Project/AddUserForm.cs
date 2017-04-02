@@ -71,10 +71,11 @@ namespace COSC3506_Project
                         id = Int32.Parse(dr[0].ToString());
                 }
 
-                command.CommandText = "INSERT INTO member_info (member_id, f_name, l_name) VALUES (@id, @firstName, @lastName)";
+                command.CommandText = "INSERT INTO member_info (member_id, f_name, l_name, position) VALUES (@id, @firstName, @lastName, @position)";
                 command.Parameters.AddWithValue("@id", id);
                 command.Parameters.AddWithValue("@firstName", txtFirstName.Text);
                 command.Parameters.AddWithValue("@lastName", txtLastName.Text);
+                command.Parameters.AddWithValue("@position", securityComboBox.Text);
 
                 command.ExecuteNonQuery();
 

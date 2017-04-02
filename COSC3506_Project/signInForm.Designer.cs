@@ -64,7 +64,7 @@
             this.lblPassword.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPassword.Location = new System.Drawing.Point(19, 138);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(79, 21);
+            this.lblPassword.Size = new System.Drawing.Size(80, 21);
             this.lblPassword.TabIndex = 2;
             this.lblPassword.Text = "Password:";
             // 
@@ -127,6 +127,7 @@
             this.Name = "SignInForm";
             this.Text = "EARS - International School of Software";
             this.Load += new System.EventHandler(this.mainForm_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SignInForm_Closed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

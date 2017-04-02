@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewApplicationForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -120,7 +121,7 @@
             // 
             // attachBtn
             // 
-            this.attachBtn.Location = new System.Drawing.Point(45, 125);
+            this.attachBtn.Location = new System.Drawing.Point(15, 125);
             this.attachBtn.Name = "attachBtn";
             this.attachBtn.Size = new System.Drawing.Size(75, 22);
             this.attachBtn.TabIndex = 4;
@@ -153,8 +154,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NewApplicationForm";
-            this.Text = "NewApplicationForm";
+            this.Text = "EARS - New Application";
             this.ResumeLayout(false);
             this.PerformLayout();
 
