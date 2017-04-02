@@ -298,10 +298,15 @@ namespace COSC3506_Project
                         command.ExecuteNonQuery();
                         command.Dispose();
                         MessageBox.Show("Application Approved!", "EARS System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                         MySqlCommand query = new MySqlCommand("SELECT COUNT(application_id) as NumOfApprovals from app_passes where application_id = @application_id", dbConnection.getConnection());
                         query.Parameters.AddWithValue("@application_id", appId);
+                        dbConnection.OpenConnection();
+                        query.Connection = dbConnection.getConnection();
+              
+
+                        Console.WriteLine("HELLO HERE: " + appId + " " + query.CommandText + "CONNECTION STATUS: " + dbConnection.getConnection().State);
                         MySqlDataReader rd = query.ExecuteReader();
+                        
                         if (rd.HasRows)
                             {
                                 rd.Read(); // read first row
@@ -311,13 +316,15 @@ namespace COSC3506_Project
                                 Console.WriteLine(numberOfRepeats);
                                 if (numberOfRepeats >= 3)
                                 {
+                                    Console.WriteLine("HELLO IM HERE!" + appId);
                                     MySqlCommand threeApproved = new MySqlCommand();
                                     threeApproved.Connection = dbConnection.getConnection();
                                     threeApproved.CommandText = "UPDATE applications SET passOn = 'Yes' where application_id = @application_id";
+                                   
                                     threeApproved.Parameters.AddWithValue("@application_id", appId);
                                     threeApproved.ExecuteNonQuery();
                                     threeApproved.Dispose();
-                            }
+                                }
                             }
                         dbConnection.CloseConnection();
                         RefreshApplicationList();
@@ -325,8 +332,8 @@ namespace COSC3506_Project
                     catch (Exception)
                     {
                          MessageBox.Show("You cannot approve an application multiple times");
-                        Console.WriteLine("HELLO IM HERE!");
-                        dbConnection.CloseConnection();
+                        
+                         dbConnection.CloseConnection();
                          RefreshApplicationList();
                     }
                 }
