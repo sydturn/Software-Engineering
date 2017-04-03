@@ -390,8 +390,14 @@ namespace COSC3506_Project
                 {
                     MySqlCommand command = new MySqlCommand();
                     command.Connection = dbConnection.getConnection();
-                    command.CommandText = "UPDATE applications SET approved = 'Yes' where application_id = @application_id"; ;
+                    command.CommandText = "UPDATE applications SET approved = 'Yes' where application_id = @application_id";
                     command.Parameters.AddWithValue("@application_id", appId);
+                    command.ExecuteNonQuery();
+                    command.Dispose();
+
+                    command.Connection = dbConnection.getConnection();
+                    command.CommandText = "UPDATE dropboxes SET job_status = 'Approved' where job_id = @job_id";
+                    command.Parameters.AddWithValue("@job_id", jobId);
                     command.ExecuteNonQuery();
                     command.Dispose();
                     MessageBox.Show("Application Finalized!", "EARS System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
